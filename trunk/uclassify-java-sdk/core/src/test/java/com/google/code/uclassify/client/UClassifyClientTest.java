@@ -17,10 +17,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import com.google.code.linkedinapi.client.TestConstants;
-import com.google.code.uclassify.client.UClassifyClientFactory;
+import com.google.code.uclassify.client.constant.TestConstants;
 import com.google.code.uclassify.client.enumeration.SearchParameter;
-import com.google.code.uclassify.client.oauth.LinkedInAccessToken;
 
 /**
  * @author Nabeel Mukhtar
@@ -31,9 +29,6 @@ public abstract class UClassifyClientTest extends TestCase {
     /** Field description */
     protected UClassifyClientFactory factory;
 
-    /** Field description */
-    protected LinkedInAccessToken accessToken;
-    
     /** Field description */
 	protected static final String RESOURCE_MISSING_MESSAGE = "Please define a test %s in TestConstants.properties file."; 
     
@@ -62,9 +57,6 @@ public abstract class UClassifyClientTest extends TestCase {
                 TestConstants.LINKED_IN_TEST_CONSUMER_SECRET);
     	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Access Token Key"), TestConstants.LINKED_IN_TEST_ACCESS_TOKEN_KEY);
     	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Access Token Secret"), TestConstants.LINKED_IN_TEST_ACCESS_TOKEN_SECRET);
-    	accessToken =
-            new LinkedInAccessToken(TestConstants.LINKED_IN_TEST_ACCESS_TOKEN_KEY,
-                                    TestConstants.LINKED_IN_TEST_ACCESS_TOKEN_SECRET);
     }
 
     /**
@@ -73,7 +65,6 @@ public abstract class UClassifyClientTest extends TestCase {
     @After
     public void tearDown() throws Exception {
     	factory = null;
-    	accessToken = null;
     }
     
 	/**
