@@ -1,0 +1,25 @@
+<bindings version="2.0" xmlns="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    extensionBindingPrefixes="xjc"
+    schemaLocation="http://api.uclassify.com/1/ResponseSchema.xsd" node="/xs:schema">
+	<globalBindings localScoping="toplevel" generateValueClass="false">
+		<javaType name="double" xmlType="xs:double"/>
+		<javaType name="long" xmlType="xs:integer"/>
+		<xjc:superInterface name="ResponseEntity"/>
+		<!-- <xjc:superClass name="BaseSchemaEntity"/> -->
+		<xjc:serializable uid="2461660169443089969"/>
+	</globalBindings>
+    <!--
+	<bindings node="//xs:element[@name='content-type']/xs:simpleType">
+		<typesafeEnumClass name="NetworkUpdateContentType">
+			<typesafeEnumMember name="LINKED_IN_HTML" value="linkedin-html"/>
+		</typesafeEnumClass>
+	</bindings>
+	-->
+	<!--
+	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
+		<property name="updateList"/>
+	</bindings>
+	-->
+</bindings>
