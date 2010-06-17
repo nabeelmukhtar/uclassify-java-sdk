@@ -133,20 +133,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
      * @return
      */
     protected InputStream callApiMethod(String apiUrl) {
-    	final List<HttpHeader> httpHeaders = Collections.emptyList();
-        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK, httpHeaders);
-    }
-
-    /**
-     *
-     *
-     * @param apiUrl
-     * @param httpHeaders
-     *
-     * @return
-     */
-    protected InputStream callApiMethod(String apiUrl, List<HttpHeader> httpHeaders) {
-        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK, httpHeaders);
+        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK);
     }
 
     /**
@@ -158,11 +145,8 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
      *
      * @return
      */
-    protected InputStream callApiMethod(String apiUrl, int expected, List<HttpHeader> httpHeaders) {
+    protected InputStream callApiMethod(String apiUrl, int expected) {
         try {
-            LinkedInOAuthService oAuthService =
-                LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
-                    apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
 
@@ -178,11 +162,6 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                 request.setRequestProperty(headerName, requestHeaders.get(headerName));
             }
             
-            for (HttpHeader header : httpHeaders) {
-                request.setRequestProperty(header.getName(), header.getValue());
-            }
-            
-            oAuthService.signRequestWithToken(request, accessToken);
             request.connect();
 
             if (request.getResponseCode() != expected) {
@@ -214,9 +193,6 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
             int expected) {
         try {
-            LinkedInOAuthService oAuthService =
-                LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
-                    apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
 
@@ -234,7 +210,6 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
             request.setRequestMethod(method.fieldName());
             request.setDoOutput(true);
-            oAuthService.signRequestWithToken(request, accessToken);
 
             if (contentType != null) {
                 request.setRequestProperty("Content-Type", contentType);
