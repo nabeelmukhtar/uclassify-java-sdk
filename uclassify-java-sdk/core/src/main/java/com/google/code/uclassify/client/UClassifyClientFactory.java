@@ -9,10 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.google.code.uclassify.client.ApplicationConstants;
-import com.google.code.uclassify.client.AsyncUClassifyClient;
-import com.google.code.uclassify.client.oauth.LinkedInAccessToken;
-import com.google.code.uclassify.client.oauth.LinkedInApiConsumer;
+import com.google.code.uclassify.client.constant.ApplicationConstants;
+import com.google.code.uclassify.client.impl.AsyncUClassifyClientAdapter;
 
 /**
  * A factory for creating LinkedInApiClient objects.
@@ -92,7 +90,7 @@ public class UClassifyClientFactory {
      * @return the linked in api client
      */
     @SuppressWarnings("unchecked")
-	public UClassifyClient createLinkedInApiClient() {
+	public UClassifyClient createUClassifyClient() {
     	try {
     		if (defaultClientImpl == null) {
         		Class<? extends UClassifyClient> clazz = (Class<? extends UClassifyClient>) Class.forName(ApplicationConstants.CLIENT_DEFAULT_IMPL);
@@ -100,7 +98,7 @@ public class UClassifyClientFactory {
         		defaultClientImpl = clazz.getConstructor(String.class, String.class);
     		}
 			
-			final UClassifyClient client = defaultClientImpl.newInstance(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret());
+			final UClassifyClient client = defaultClientImpl.newInstance(apiConsumer.getReadApiKey(), apiConsumer.getWriteApiKey());
 
 	        return client;
 		} catch (Exception e) {
@@ -115,7 +113,7 @@ public class UClassifyClientFactory {
      * 
      * @return the linked in api client
      */
-	public UClassifyClient createLinkedInApiClient(Class<? extends UClassifyClient> implClass) {
+	public UClassifyClient createUClassifyClient(Class<? extends UClassifyClient> implClass) {
     	try {
 			final UClassifyClient client = implClass.getConstructor(String.class, String.class).newInstance(apiConsumer.getReadApiKey(), apiConsumer.getWriteApiKey());
 
@@ -132,8 +130,8 @@ public class UClassifyClientFactory {
      * 
      * @return the async linked in api client
      */
-    public AsyncUClassifyClient createAsyncLinkedInApiClient() {
-        final UClassifyClient client = createLinkedInApiClient();
+    public AsyncUClassifyClient createAsyncUClassifyClient() {
+        final UClassifyClient client = createUClassifyClient();
 
         return new AsyncUClassifyClientAdapter(client, taskExecutor);
     }
@@ -146,8 +144,8 @@ public class UClassifyClientFactory {
      * 
      * @return the linked in api client
      */
-    public UClassifyClient createLinkedInApiClient(String token, String tokenSecret) {
-        return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    public UClassifyClient createUClassifyClient(String token, String tokenSecret) {
+        return createUClassifyClient();
     }
     
     /**
@@ -158,8 +156,8 @@ public class UClassifyClientFactory {
      * 
      * @return the async linked in api client
      */
-    public AsyncUClassifyClient createAsyncLinkedInApiClient(String token, String tokenSecret) {
-        return createAsyncLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    public AsyncUClassifyClient createAsyncUClassifyClient(String token, String tokenSecret) {
+        return createAsyncUClassifyClient();
     }
     
     /**
@@ -169,26 +167,11 @@ public class UClassifyClientFactory {
 		if (apiConsumer == null) {
     		throw new IllegalArgumentException("api consumer cannot be null.");
     	}
-    	if (apiConsumer.getConsumerKey() == null || apiConsumer.getConsumerKey().length() == 0) {
-    		throw new IllegalArgumentException("consumer key cannot be null or empty.");
+    	if (apiConsumer.getReadApiKey() == null || apiConsumer.getReadApiKey().length() == 0) {
+    		throw new IllegalArgumentException("read key cannot be null or empty.");
     	}
-    	if (apiConsumer.getConsumerSecret() == null || apiConsumer.getConsumerSecret().length() == 0) {
-    		throw new IllegalArgumentException("consumer secret cannot be null or empty.");
-    	}
-	}
-    
-    /**
-     * 
-     */
-	private void validateAccessToken(LinkedInAccessToken accessToken) {
-		if (accessToken == null) {
-    		throw new IllegalArgumentException("access token cannot be null.");
-    	}
-    	if (accessToken.getToken() == null || accessToken.getToken().length() == 0) {
-    		throw new IllegalArgumentException("access token cannot be null or empty.");
-    	}
-    	if (accessToken.getTokenSecret() == null || accessToken.getTokenSecret().length() == 0) {
-    		throw new IllegalArgumentException("access token secret cannot be null or empty.");
-    	}
+//    	if (apiConsumer.getConsumerSecret() == null || apiConsumer.getConsumerSecret().length() == 0) {
+//    		throw new IllegalArgumentException("consumer secret cannot be null or empty.");
+//    	}
 	}
 }

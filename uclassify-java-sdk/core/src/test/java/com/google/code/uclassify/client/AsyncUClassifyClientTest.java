@@ -16,7 +16,7 @@ public class AsyncUClassifyClientTest extends UClassifyClientTest {
 	 */
 	public void setUp() throws Exception {
 		super.setUp();
-		client = factory.createAsyncLinkedInApiClient();
+		client = factory.createAsyncUClassifyClient();
 	}
 
 	/**

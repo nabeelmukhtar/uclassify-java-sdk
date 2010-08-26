@@ -136,7 +136,7 @@ public final class UClassifyUrls {
     /**
      * The Class LinkedInApiUrlBuilder.
      */
-    public static class LinkedInApiUrlBuilder {
+    public static class UClassifyUrlBuilder {
         
         /** The Constant API_URLS_PLACEHOLDER_START. */
         private static final char API_URLS_PLACEHOLDER_START = '{';
@@ -165,7 +165,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @param urlFormat the url format
 	     */
-	    public LinkedInApiUrlBuilder(String urlFormat) {
+	    public UClassifyUrlBuilder(String urlFormat) {
     		this.urlFormat = urlFormat;    		
     	}
     	
@@ -175,7 +175,7 @@ public final class UClassifyUrls {
 	     * @param urlFormat the url format
 	     * @param urlType the url type
 	     */
-	    public LinkedInApiUrlBuilder(String urlFormat, String urlType) {
+	    public UClassifyUrlBuilder(String urlFormat, String urlType) {
     		this.urlFormat = urlFormat;
     		this.urlType = urlType;
     	}
@@ -188,7 +188,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withParameter(String name, String value) {
+	    public UClassifyUrlBuilder withParameter(String name, String value) {
 	    	if (value != null && value.length() > 0) {
 	    		parametersMap.put(name, Collections.singleton(encodeUrl(value)));
 	    	}
@@ -204,7 +204,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withParameters(String name, Collection<String> values) {
+	    public UClassifyUrlBuilder withParameters(String name, Collection<String> values) {
 	    	List<String> encodedValues = new ArrayList<String>(values.size());
 	    	for (String value : values) {
 	    		encodedValues.add(encodeUrl(value));
@@ -222,7 +222,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withParameterEnumSet(String name, Set<? extends FieldEnum> enumSet) {
+	    public UClassifyUrlBuilder withParameterEnumSet(String name, Set<? extends FieldEnum> enumSet) {
 	    	Set<String> values = new HashSet<String>(enumSet.size());
 	    	
 	    	for (FieldEnum fieldEnum : enumSet) {
@@ -242,7 +242,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withParameterEnum(String name, FieldEnum value) {
+	    public UClassifyUrlBuilder withParameterEnum(String name, FieldEnum value) {
 	    	withParameter(name, value.fieldName());
     		
     		return this;
@@ -255,7 +255,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withParameterEnumMap(Map<? extends FieldEnum, String> enumMap) {
+	    public UClassifyUrlBuilder withParameterEnumMap(Map<? extends FieldEnum, String> enumMap) {
 	    	for (FieldEnum parameter : enumMap.keySet()) {
 	    		withParameter(parameter.fieldName(), enumMap.get(parameter));
 	    	}
@@ -270,7 +270,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withEmptyField(String name) {
+	    public UClassifyUrlBuilder withEmptyField(String name) {
     		fieldsMap.put(name, "");
     		
     		return this;
@@ -284,7 +284,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withField(String name, String value) {
+	    public UClassifyUrlBuilder withField(String name, String value) {
 	    	withField(name, value, false);
     		
     		return this;
@@ -298,7 +298,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withField(String name, String value, boolean escape) {
+	    public UClassifyUrlBuilder withField(String name, String value, boolean escape) {
 	    	if (escape) {
 	    		fieldsMap.put(name, encodeUrl(value));
 	    	} else {
@@ -316,7 +316,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withFieldEnum(String name, FieldEnum value) {
+	    public UClassifyUrlBuilder withFieldEnum(String name, FieldEnum value) {
 	    	if (value.fieldName() == null || value.fieldName().length() == 0) {
 	    		fieldsMap.put(name, "");
 	    	} else {
@@ -334,7 +334,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withFieldEnumSet(String name, Set<? extends FieldEnum> enumSet) {
+	    public UClassifyUrlBuilder withFieldEnumSet(String name, Set<? extends FieldEnum> enumSet) {
 	    	StringBuilder builder = new StringBuilder();
 	    	if (!enumSet.isEmpty()) {
 	        	builder.append(":");
