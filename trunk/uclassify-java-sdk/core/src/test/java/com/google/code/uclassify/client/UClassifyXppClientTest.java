@@ -17,7 +17,7 @@ public class UClassifyXppClientTest extends UClassifyClientTest {
 	 */
 	public void setUp() throws Exception {
 		super.setUp();
-		client = factory.createLinkedInApiClient(UClassifyXppClient.class);
+		client = factory.createUClassifyClient(UClassifyXppClient.class);
 	}
 
 	/**

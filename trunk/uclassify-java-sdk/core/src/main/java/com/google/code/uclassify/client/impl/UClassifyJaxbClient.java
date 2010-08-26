@@ -6,16 +6,14 @@ import java.io.InputStream;
 import java.io.StringWriter;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import com.google.code.linkedinapi.schema.ObjectFactory;
-import com.google.code.linkedinapi.schema.SchemaElementFactory;
-import com.google.code.uclassify.client.BaseLinkedInApiClient;
+import com.google.code.uclassify.client.SchemaElementFactory;
 import com.google.code.uclassify.client.UClassifyClientException;
-import com.google.code.uclassify.client.constant.UClassifyUrls.LinkedInApiUrlBuilder;
+import com.google.code.uclassify.client.constant.UClassifyUrls.UClassifyUrlBuilder;
+import com.uclassify.api._1.requestschema.ObjectFactory;
 
 /**
  * @author Nabeel Mukhtar
@@ -27,7 +25,7 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     private static final String JAXB_PACKAGE_NAME = "com.google.code.linkedinapi.schema";
     
     /** Field description */
-    private static final SchemaElementFactory<JAXBElement<?>> OBJECT_FACTORY = new JaxbElementFactory();
+    private static final SchemaElementFactory OBJECT_FACTORY = new JaxbElementFactory();
     
     /** Do not access directly. It may be null!!!. Use {@link #getJaxbContext()} */
     private static JAXBContext JAXB_CONTEXT;
@@ -89,7 +87,7 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
      *
      * @return
      */
-    protected SchemaElementFactory<?> createObjectFactory() {
+    protected SchemaElementFactory createObjectFactory() {
     	return OBJECT_FACTORY;
     }
     
@@ -101,8 +99,8 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
      *
      * @return
      */
-    protected LinkedInApiUrlBuilder createLinkedInApiUrlBuilder(String urlFormat) {
-        return new LinkedInApiUrlBuilder(urlFormat);
+    protected UClassifyUrlBuilder createLinkedInApiUrlBuilder(String urlFormat) {
+        return new UClassifyUrlBuilder(urlFormat);
     }
 
     /**
@@ -124,7 +122,7 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
 		JAXB_CONTEXT = context;
 	}
 	
-	private static class JaxbElementFactory extends ObjectFactory implements SchemaElementFactory<JAXBElement<?>> {
+	private static class JaxbElementFactory extends ObjectFactory implements SchemaElementFactory {
 		public JaxbElementFactory() {
 			super();
 		}

@@ -11,20 +11,19 @@ import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
+import com.google.code.uclassify.client.SchemaElementFactory;
 import com.google.code.uclassify.client.UClassifyClient;
 import com.google.code.uclassify.client.UClassifyClientException;
 import com.google.code.uclassify.client.UClassifyConsumer;
 import com.google.code.uclassify.client.constant.ApplicationConstants;
-import com.google.code.uclassify.client.constant.UClassifyUrls.LinkedInApiUrlBuilder;
+import com.google.code.uclassify.client.constant.UClassifyUrls.UClassifyUrlBuilder;
 import com.google.code.uclassify.client.enumeration.HttpMethod;
 
 /**
@@ -37,7 +36,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     private static final String GZIP_ENCODING = "gzip";
 
     /** Field description */
-    private final SchemaElementFactory<?> OBJECT_FACTORY = createObjectFactory();
+    private final SchemaElementFactory OBJECT_FACTORY = createObjectFactory();
 
     /** The static logger. */
     protected final Logger LOG = Logger.getLogger(getClass().getCanonicalName());
@@ -280,16 +279,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
      * @return
      */
     protected UClassifyClientException createLinkedInApiClientException(Error error) {
-        final String message    = error.getMessage();
-        final String errorCode  = error.getErrorCode();
-        final int    statusCode = (error.getStatus() == null)
-                                  ? 0
-                                  : error.getStatus().intValue();
-        final Date   timestamp  = (error.getTimestamp() == null)
-                                  ? new Date()
-                                  : new Date(error.getTimestamp());
-
-        return new UClassifyClientException(message, statusCode, errorCode, timestamp);
+        return new UClassifyClientException("", 0, "", new Date());
     }
 
     /**
@@ -399,12 +389,12 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
      *
      * @return
      */
-    protected abstract LinkedInApiUrlBuilder createLinkedInApiUrlBuilder(String urlFormat);
+    protected abstract UClassifyUrlBuilder createLinkedInApiUrlBuilder(String urlFormat);
 
     /**
      * Method description
      *
      * @return
      */
-    protected abstract SchemaElementFactory<?> createObjectFactory();
+    protected abstract SchemaElementFactory createObjectFactory();
 }

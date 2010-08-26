@@ -4,39 +4,15 @@
 package com.google.code.uclassify.client.impl;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.Activity;
-import com.google.code.linkedinapi.schema.Connections;
-import com.google.code.linkedinapi.schema.Error;
-import com.google.code.linkedinapi.schema.MailboxItem;
-import com.google.code.linkedinapi.schema.Network;
-import com.google.code.linkedinapi.schema.People;
-import com.google.code.linkedinapi.schema.Person;
-import com.google.code.linkedinapi.schema.SchemaElementFactory;
-import com.google.code.linkedinapi.schema.SchemaEntity;
-import com.google.code.linkedinapi.schema.UpdateComment;
-import com.google.code.linkedinapi.schema.UpdateComments;
-import com.google.code.linkedinapi.schema.xpp.ActivityImpl;
-import com.google.code.linkedinapi.schema.xpp.BaseSchemaEntity;
-import com.google.code.linkedinapi.schema.xpp.ConnectionsImpl;
-import com.google.code.linkedinapi.schema.xpp.ErrorImpl;
-import com.google.code.linkedinapi.schema.xpp.MailboxItemImpl;
-import com.google.code.linkedinapi.schema.xpp.NetworkImpl;
-import com.google.code.linkedinapi.schema.xpp.PeopleImpl;
-import com.google.code.linkedinapi.schema.xpp.PersonImpl;
-import com.google.code.linkedinapi.schema.xpp.UpdateCommentImpl;
-import com.google.code.linkedinapi.schema.xpp.UpdateCommentsImpl;
-import com.google.code.linkedinapi.schema.xpp.XppElementFactory;
-import com.google.code.uclassify.client.ApplicationConstants;
-import com.google.code.uclassify.client.BaseLinkedInApiClient;
+import com.google.code.uclassify.client.SchemaElementFactory;
 import com.google.code.uclassify.client.UClassifyClientException;
-import com.google.code.uclassify.client.constant.UClassifyUrls.LinkedInApiUrlBuilder;
+import com.google.code.uclassify.client.constant.ApplicationConstants;
+import com.google.code.uclassify.client.constant.UClassifyUrls.UClassifyUrlBuilder;
 
 /**
  * @author Nabeel Mukhtar
@@ -45,21 +21,13 @@ import com.google.code.uclassify.client.constant.UClassifyUrls.LinkedInApiUrlBui
 public class UClassifyXppClient extends BaseUClassifyClient {
 
     /** Field description */
-    private static final SchemaElementFactory<String> OBJECT_FACTORY = new XppElementFactory();
+    private static final SchemaElementFactory OBJECT_FACTORY = new XppElementFactory();
     
     /** Field description */
 	private static final Map<Class<? extends ResponseEntity>, Class<? extends BaseSchemaEntity>> DOM_CLASSES_MAP = new HashMap<Class<? extends ResponseEntity>, Class<? extends BaseSchemaEntity>>();
 	
 	static {
 		DOM_CLASSES_MAP.put(Person.class, PersonImpl.class);
-		DOM_CLASSES_MAP.put(Network.class, NetworkImpl.class);
-		DOM_CLASSES_MAP.put(People.class, PeopleImpl.class);
-		DOM_CLASSES_MAP.put(Connections.class, ConnectionsImpl.class);
-		DOM_CLASSES_MAP.put(Error.class, ErrorImpl.class);
-		DOM_CLASSES_MAP.put(MailboxItem.class, MailboxItemImpl.class);
-		DOM_CLASSES_MAP.put(UpdateComment.class, UpdateCommentImpl.class);
-		DOM_CLASSES_MAP.put(Activity.class, ActivityImpl.class);
-		DOM_CLASSES_MAP.put(UpdateComments.class, UpdateCommentsImpl.class);
 	}
 	
     /**
@@ -146,8 +114,8 @@ public class UClassifyXppClient extends BaseUClassifyClient {
      *
      * @return
      */
-    protected LinkedInApiUrlBuilder createLinkedInApiUrlBuilder(String urlFormat) {
-        return new LinkedInApiUrlBuilder(urlFormat);
+    protected UClassifyUrlBuilder createLinkedInApiUrlBuilder(String urlFormat) {
+        return new UClassifyUrlBuilder(urlFormat);
     }
     
     /**
