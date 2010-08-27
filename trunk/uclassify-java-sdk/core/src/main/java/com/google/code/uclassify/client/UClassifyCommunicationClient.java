@@ -11,6 +11,9 @@ import java.util.Map;
  * @author Nabeel Mukhtar
  */
 public interface UClassifyCommunicationClient {
+	public enum HttpMethod {
+		GET, POST, PUT, DELETE;
+	}
 
     /**
      * Sets the request headers.
