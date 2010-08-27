@@ -20,31 +20,43 @@ import java.util.Map;
 
 /**
  * The Interface LinkedInCommunicationClient.
- *
+ * 
  * @author Nabeel Mukhtar
  */
 public interface UClassifyCommunicationClient {
+	
+	/**
+	 * The Enum HttpMethod.
+	 */
 	public enum HttpMethod {
-		GET, POST, PUT, DELETE;
+		
+		/** The GET. */
+		GET, 
+ /** The POST. */
+ POST, 
+ /** The PUT. */
+ PUT, 
+ /** The DELETE. */
+ DELETE;
 	}
 
     /**
      * Sets the request headers.
-     *
+     * 
      * @param requestHeaders the request headers
      */
     public void setRequestHeaders(Map<String, String> requestHeaders);
 
     /**
      * Gets the request headers.
-     *
+     * 
      * @return the request headers
      */
     public Map<String, String> getRequestHeaders();
 
     /**
      * Adds the request header.
-     *
+     * 
      * @param headerName the header name
      * @param headerValue the header value
      */
@@ -52,7 +64,7 @@ public interface UClassifyCommunicationClient {
 
     /**
      * Removes the request header.
-     *
+     * 
      * @param headerName the header name
      */
     public void removeRequestHeader(String headerName);

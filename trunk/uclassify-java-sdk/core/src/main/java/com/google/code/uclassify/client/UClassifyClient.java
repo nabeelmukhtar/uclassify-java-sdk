@@ -30,19 +30,128 @@ import com.uclassify.api._1.responseschema.Classification;
  * @author Nabeel Mukhtar
  */
 public interface UClassifyClient extends UClassifyAuthenticationClient {
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the map< string, classification>
+	 */
 	public Map<String, Classification> classify(String classifierName, List<String> texts);
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the map< string, classification>
+	 */
 	public Map<String, Classification> classify(String classifierName, InputStream texts);
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param userName the user name
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the map< string, classification>
+	 */
 	public Map<String, Classification> classify(String userName, String classifierName, List<String> texts);
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param userName the user name
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the map< string, classification>
+	 */
 	public Map<String, Classification> classify(String userName, String classifierName, InputStream texts);
+	
+	/**
+	 * Gets the information.
+	 * 
+	 * @param classifierName the classifier name
+	 * 
+	 * @return the information
+	 */
 	public List<ClassInformation> getInformation(String classifierName);
+	
+	/**
+	 * Gets the information.
+	 * 
+	 * @param userName the user name
+	 * @param classifierName the classifier name
+	 * 
+	 * @return the information
+	 */
 	public List<ClassInformation> getInformation(String userName, String classifierName);
+	
+	/**
+	 * Creates the classifier.
+	 * 
+	 * @param classifierName the classifier name
+	 */
 	public void createClassifier(String classifierName);
+	
+	/**
+	 * Removes the classifier.
+	 * 
+	 * @param classifierName the classifier name
+	 */
 	public void removeClassifier(String classifierName);
+	
+	/**
+	 * Adds the class.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param className the class name
+	 */
 	public void addClass(String classifierName, String className);
+	
+	/**
+	 * Removes the class.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param className the class name
+	 */
 	public void removeClass(String classifierName, String className);
+	
+	/**
+	 * Train.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 */
 	public void train(String classifierName, Map<String, String> trainingTexts);
+	
+	/**
+	 * Train.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 */
 	public void train(String classifierName, InputStream trainingTexts);
+	
+	/**
+	 * Untrain.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 */
 	public void untrain(String classifierName, Map<String, String> trainingTexts);
+	
+	/**
+	 * Untrain.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 */
 	public void untrain(String classifierName, InputStream trainingTexts);
 	
 }

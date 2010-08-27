@@ -255,8 +255,7 @@ public class Base64
     /**
  * Gets the alphabet.
  * 
- * @param options
- *            the options
+ * @param options the options
  * 
  * @return the alphabet
  */
@@ -272,13 +271,12 @@ public class Base64
 
 
     /**
-	 * Gets the decodabet.
-	 * 
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the decodabet
-	 */
+     * Gets the decodabet.
+     * 
+     * @param options the options
+     * 
+     * @return the decodabet
+     */
     private final static byte[] getDecodabet( int options ) {
         if( (options & URL_SAFE) == URL_SAFE) {
             return _URL_SAFE_DECODABET;
@@ -292,8 +290,8 @@ public class Base64
 
     
     /**
-	 * Instantiates a new base64.
-	 */
+     * Instantiates a new base64.
+     */
     private Base64(){}
     
 
@@ -305,14 +303,10 @@ public class Base64
     /**
  * Encode3to4.
  * 
- * @param b4
- *            the b4
- * @param threeBytes
- *            the three bytes
- * @param numSigBytes
- *            the num sig bytes
- * @param options
- *            the options
+ * @param b4 the b4
+ * @param threeBytes the three bytes
+ * @param numSigBytes the num sig bytes
+ * @param options the options
  * 
  * @return the byte[]
  */
@@ -323,23 +317,17 @@ public class Base64
 
     
     /**
-	 * Encode3to4.
-	 * 
-	 * @param source
-	 *            the source
-	 * @param srcOffset
-	 *            the src offset
-	 * @param numSigBytes
-	 *            the num sig bytes
-	 * @param destination
-	 *            the destination
-	 * @param destOffset
-	 *            the dest offset
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the byte[]
-	 */
+     * Encode3to4.
+     * 
+     * @param source the source
+     * @param srcOffset the src offset
+     * @param numSigBytes the num sig bytes
+     * @param destination the destination
+     * @param destOffset the dest offset
+     * @param options the options
+     * 
+     * @return the byte[]
+     */
     private static byte[] encode3to4( 
     byte[] source, int srcOffset, int numSigBytes,
     byte[] destination, int destOffset, int options ) {
@@ -392,13 +380,11 @@ public class Base64
 
 
     /**
-	 * Encode.
-	 * 
-	 * @param raw
-	 *            the raw
-	 * @param encoded
-	 *            the encoded
-	 */
+     * Encode.
+     * 
+     * @param raw the raw
+     * @param encoded the encoded
+     */
     public static void encode( java.nio.ByteBuffer raw, java.nio.ByteBuffer encoded ){
         byte[] raw3 = new byte[3];
         byte[] enc4 = new byte[4];
@@ -413,13 +399,11 @@ public class Base64
 
 
     /**
-	 * Encode.
-	 * 
-	 * @param raw
-	 *            the raw
-	 * @param encoded
-	 *            the encoded
-	 */
+     * Encode.
+     * 
+     * @param raw the raw
+     * @param encoded the encoded
+     */
     public static void encode( java.nio.ByteBuffer raw, java.nio.CharBuffer encoded ){
         byte[] raw3 = new byte[3];
         byte[] enc4 = new byte[4];
@@ -438,16 +422,14 @@ public class Base64
     
     
     /**
-	 * Encode object.
-	 * 
-	 * @param serializableObject
-	 *            the serializable object
-	 * 
-	 * @return the string
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode object.
+     * 
+     * @param serializableObject the serializable object
+     * 
+     * @return the string
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static String encodeObject( java.io.Serializable serializableObject )
     throws java.io.IOException {
         return encodeObject( serializableObject, NO_OPTIONS );
@@ -456,18 +438,15 @@ public class Base64
 
 
     /**
-	 * Encode object.
-	 * 
-	 * @param serializableObject
-	 *            the serializable object
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the string
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode object.
+     * 
+     * @param serializableObject the serializable object
+     * @param options the options
+     * 
+     * @return the string
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static String encodeObject( java.io.Serializable serializableObject, int options )
     throws java.io.IOException {
 
@@ -522,13 +501,12 @@ public class Base64
     
 
     /**
-	 * Encode bytes.
-	 * 
-	 * @param source
-	 *            the source
-	 * 
-	 * @return the string
-	 */
+     * Encode bytes.
+     * 
+     * @param source the source
+     * 
+     * @return the string
+     */
     public static String encodeBytes( byte[] source ) {
         // Since we're not going to have the GZIP encoding turned on,
         // we're not going to have an java.io.IOException thrown, so
@@ -546,35 +524,29 @@ public class Base64
 
 
     /**
-	 * Encode bytes.
-	 * 
-	 * @param source
-	 *            the source
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the string
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode bytes.
+     * 
+     * @param source the source
+     * @param options the options
+     * 
+     * @return the string
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static String encodeBytes( byte[] source, int options ) throws java.io.IOException {
         return encodeBytes( source, 0, source.length, options );
     }   // end encodeBytes
     
     
     /**
-	 * Encode bytes.
-	 * 
-	 * @param source
-	 *            the source
-	 * @param off
-	 *            the off
-	 * @param len
-	 *            the len
-	 * 
-	 * @return the string
-	 */
+     * Encode bytes.
+     * 
+     * @param source the source
+     * @param off the off
+     * @param len the len
+     * 
+     * @return the string
+     */
     public static String encodeBytes( byte[] source, int off, int len ) {
         // Since we're not going to have the GZIP encoding turned on,
         // we're not going to have an java.io.IOException thrown, so
@@ -592,22 +564,17 @@ public class Base64
     
 
     /**
-	 * Encode bytes.
-	 * 
-	 * @param source
-	 *            the source
-	 * @param off
-	 *            the off
-	 * @param len
-	 *            the len
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the string
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode bytes.
+     * 
+     * @param source the source
+     * @param off the off
+     * @param len the len
+     * @param options the options
+     * 
+     * @return the string
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static String encodeBytes( byte[] source, int off, int len, int options ) throws java.io.IOException {
         byte[] encoded = encodeBytesToBytes( source, off, len, options );
 
@@ -625,13 +592,12 @@ public class Base64
 
 
     /**
-	 * Encode bytes to bytes.
-	 * 
-	 * @param source
-	 *            the source
-	 * 
-	 * @return the byte[]
-	 */
+     * Encode bytes to bytes.
+     * 
+     * @param source the source
+     * 
+     * @return the byte[]
+     */
     public static byte[] encodeBytesToBytes( byte[] source ) {
         byte[] encoded = null;
         try {
@@ -644,22 +610,17 @@ public class Base64
 
 
     /**
-	 * Encode bytes to bytes.
-	 * 
-	 * @param source
-	 *            the source
-	 * @param off
-	 *            the off
-	 * @param len
-	 *            the len
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the byte[]
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode bytes to bytes.
+     * 
+     * @param source the source
+     * @param off the off
+     * @param len the len
+     * @param options the options
+     * 
+     * @return the byte[]
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static byte[] encodeBytesToBytes( byte[] source, int off, int len, int options ) throws java.io.IOException {
 
         if( source == null ){
@@ -779,16 +740,11 @@ public class Base64
     /**
  * Decode4to3.
  * 
- * @param source
- *            the source
- * @param srcOffset
- *            the src offset
- * @param destination
- *            the destination
- * @param destOffset
- *            the dest offset
- * @param options
- *            the options
+ * @param source the source
+ * @param srcOffset the src offset
+ * @param destination the destination
+ * @param destOffset the dest offset
+ * @param options the options
  * 
  * @return the int
  */
@@ -868,16 +824,14 @@ public class Base64
 
 
     /**
-	 * Decode.
-	 * 
-	 * @param source
-	 *            the source
-	 * 
-	 * @return the byte[]
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Decode.
+     * 
+     * @param source the source
+     * 
+     * @return the byte[]
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static byte[] decode( byte[] source )
     throws java.io.IOException {
         byte[] decoded = null;
@@ -892,22 +846,17 @@ public class Base64
     
     
     /**
-	 * Decode.
-	 * 
-	 * @param source
-	 *            the source
-	 * @param off
-	 *            the off
-	 * @param len
-	 *            the len
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the byte[]
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Decode.
+     * 
+     * @param source the source
+     * @param off the off
+     * @param len the len
+     * @param options the options
+     * 
+     * @return the byte[]
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static byte[] decode( byte[] source, int off, int len, int options )
     throws java.io.IOException {
         
@@ -975,16 +924,14 @@ public class Base64
 	
 	
     /**
-	 * Decode.
-	 * 
-	 * @param s
-	 *            the s
-	 * 
-	 * @return the byte[]
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Decode.
+     * 
+     * @param s the s
+     * 
+     * @return the byte[]
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static byte[] decode( String s ) throws java.io.IOException {
         return decode( s, NO_OPTIONS );
     }
@@ -992,18 +939,15 @@ public class Base64
     
     
     /**
-	 * Decode.
-	 * 
-	 * @param s
-	 *            the s
-	 * @param options
-	 *            the options
-	 * 
-	 * @return the byte[]
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Decode.
+     * 
+     * @param s the s
+     * @param options the options
+     * 
+     * @return the byte[]
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static byte[] decode( String s, int options ) throws java.io.IOException {
         
         if( s == null ){
@@ -1067,18 +1011,15 @@ public class Base64
 
 
     /**
-	 * Decode to object.
-	 * 
-	 * @param encodedObject
-	 *            the encoded object
-	 * 
-	 * @return the object
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws ClassNotFoundException
-	 *             the class not found exception
-	 */
+     * Decode to object.
+     * 
+     * @param encodedObject the encoded object
+     * 
+     * @return the object
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws ClassNotFoundException the class not found exception
+     */
     public static Object decodeToObject( String encodedObject )
     throws java.io.IOException, java.lang.ClassNotFoundException {
         return decodeToObject(encodedObject,NO_OPTIONS,null);
@@ -1086,22 +1027,17 @@ public class Base64
     
 
     /**
-	 * Decode to object.
-	 * 
-	 * @param encodedObject
-	 *            the encoded object
-	 * @param options
-	 *            the options
-	 * @param loader
-	 *            the loader
-	 * 
-	 * @return the object
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws ClassNotFoundException
-	 *             the class not found exception
-	 */
+     * Decode to object.
+     * 
+     * @param encodedObject the encoded object
+     * @param options the options
+     * @param loader the loader
+     * 
+     * @return the object
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws ClassNotFoundException the class not found exception
+     */
     public static Object decodeToObject( 
     String encodedObject, int options, final ClassLoader loader )
     throws java.io.IOException, java.lang.ClassNotFoundException {
@@ -1157,16 +1093,13 @@ public class Base64
     
     
     /**
-	 * Encode to file.
-	 * 
-	 * @param dataToEncode
-	 *            the data to encode
-	 * @param filename
-	 *            the filename
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode to file.
+     * 
+     * @param dataToEncode the data to encode
+     * @param filename the filename
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void encodeToFile( byte[] dataToEncode, String filename )
     throws java.io.IOException {
         
@@ -1191,16 +1124,13 @@ public class Base64
     
     
     /**
-	 * Decode to file.
-	 * 
-	 * @param dataToDecode
-	 *            the data to decode
-	 * @param filename
-	 *            the filename
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Decode to file.
+     * 
+     * @param dataToDecode the data to decode
+     * @param filename the filename
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void decodeToFile( String dataToDecode, String filename )
     throws java.io.IOException {
         
@@ -1223,16 +1153,14 @@ public class Base64
     
     
     /**
-	 * Decode from file.
-	 * 
-	 * @param filename
-	 *            the filename
-	 * 
-	 * @return the byte[]
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Decode from file.
+     * 
+     * @param filename the filename
+     * 
+     * @return the byte[]
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static byte[] decodeFromFile( String filename )
     throws java.io.IOException {
         
@@ -1281,16 +1209,14 @@ public class Base64
     
     
     /**
-	 * Encode from file.
-	 * 
-	 * @param filename
-	 *            the filename
-	 * 
-	 * @return the string
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode from file.
+     * 
+     * @param filename the filename
+     * 
+     * @return the string
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static String encodeFromFile( String filename )
     throws java.io.IOException {
         
@@ -1329,16 +1255,13 @@ public class Base64
         }   // end encodeFromFile
     
     /**
-	 * Encode file to file.
-	 * 
-	 * @param infile
-	 *            the infile
-	 * @param outfile
-	 *            the outfile
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Encode file to file.
+     * 
+     * @param infile the infile
+     * @param outfile the outfile
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void encodeFileToFile( String infile, String outfile )
     throws java.io.IOException {
         
@@ -1360,16 +1283,13 @@ public class Base64
 
 
     /**
-	 * Decode file to file.
-	 * 
-	 * @param infile
-	 *            the infile
-	 * @param outfile
-	 *            the outfile
-	 * 
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
+     * Decode file to file.
+     * 
+     * @param infile the infile
+     * @param outfile the outfile
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void decodeFileToFile( String infile, String outfile )
     throws java.io.IOException {
         
@@ -1395,8 +1315,8 @@ public class Base64
     
     
     /**
-	 * The Class InputStream.
-	 */
+     * The Class InputStream.
+     */
     public static class InputStream extends java.io.FilterInputStream {
         
         /** The encode. */
@@ -1428,24 +1348,21 @@ public class Base64
         
         
         /**
-		 * Instantiates a new input stream.
-		 * 
-		 * @param in
-		 *            the in
-		 */
+         * Instantiates a new input stream.
+         * 
+         * @param in the in
+         */
         public InputStream( java.io.InputStream in ) {
             this( in, DECODE );
         }   // end constructor
         
         
         /**
-		 * Instantiates a new input stream.
-		 * 
-		 * @param in
-		 *            the in
-		 * @param options
-		 *            the options
-		 */
+         * Instantiates a new input stream.
+         * 
+         * @param in the in
+         * @param options the options
+         */
         public InputStream( java.io.InputStream in, int options ) {
             
             super( in );
@@ -1595,8 +1512,8 @@ public class Base64
     
     
     /**
-	 * The Class OutputStream.
-	 */
+     * The Class OutputStream.
+     */
     public static class OutputStream extends java.io.FilterOutputStream {
         
         /** The encode. */
@@ -1630,24 +1547,21 @@ public class Base64
         private byte[]  decodabet;  // Local copies to avoid extra method calls
         
         /**
-		 * Instantiates a new output stream.
-		 * 
-		 * @param out
-		 *            the out
-		 */
+         * Instantiates a new output stream.
+         * 
+         * @param out the out
+         */
         public OutputStream( java.io.OutputStream out ) {
             this( out, ENCODE );
         }   // end constructor
         
         
         /**
-		 * Instantiates a new output stream.
-		 * 
-		 * @param out
-		 *            the out
-		 * @param options
-		 *            the options
-		 */
+         * Instantiates a new output stream.
+         * 
+         * @param out the out
+         * @param options the options
+         */
         public OutputStream( java.io.OutputStream out, int options ) {
             super( out );
             this.breakLines   = (options & DO_BREAK_LINES) != 0;
@@ -1733,11 +1647,10 @@ public class Base64
         
         
         /**
-		 * Flush base64.
-		 * 
-		 * @throws IOException
-		 *             Signals that an I/O exception has occurred.
-		 */
+         * Flush base64.
+         * 
+         * @throws IOException Signals that an I/O exception has occurred.
+         */
         public void flushBase64() throws java.io.IOException  {
             if( position > 0 ) {
                 if( encode ) {
@@ -1771,11 +1684,10 @@ public class Base64
         
         
         /**
-		 * Suspend encoding.
-		 * 
-		 * @throws IOException
-		 *             Signals that an I/O exception has occurred.
-		 */
+         * Suspend encoding.
+         * 
+         * @throws IOException Signals that an I/O exception has occurred.
+         */
         public void suspendEncoding() throws java.io.IOException  {
             flushBase64();
             this.suspendEncoding = true;
@@ -1783,8 +1695,8 @@ public class Base64
         
         
         /**
-		 * Resume encoding.
-		 */
+         * Resume encoding.
+         */
         public void resumeEncoding() {
             this.suspendEncoding = false;
         }   // end resumeEncoding

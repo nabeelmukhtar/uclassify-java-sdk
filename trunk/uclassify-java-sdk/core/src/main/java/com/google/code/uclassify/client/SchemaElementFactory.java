@@ -32,95 +32,113 @@ import com.uclassify.api._1.requestschema.WebReadCallList;
 import com.uclassify.api._1.requestschema.WebWriteCallList;
 import com.uclassify.api._1.requestschema.WriteCallList;
 
+/**
+ * A factory for creating SchemaElement objects.
+ */
 public interface SchemaElementFactory {
 
 	/**
-	 * Create an instance of {@link WriteCallList }
+	 * Create an instance of {@link WriteCallList }.
 	 * 
+	 * @return the write call list
 	 */
 	public WriteCallList createWriteCallList();
 
 	/**
-	 * Create an instance of {@link AddClass }
+	 * Create an instance of {@link AddClass }.
 	 * 
+	 * @return the adds the class
 	 */
 	public AddClass createAddClass();
 
 	/**
-	 * Create an instance of {@link Uclassify }
+	 * Create an instance of {@link Uclassify }.
 	 * 
+	 * @return the uclassify
 	 */
 	public Uclassify createUclassify();
 
 	/**
-	 * Create an instance of {@link ReadCallList }
+	 * Create an instance of {@link ReadCallList }.
 	 * 
+	 * @return the read call list
 	 */
 	public ReadCallList createReadCallList();
 
 	/**
-	 * Create an instance of {@link Train }
+	 * Create an instance of {@link Train }.
 	 * 
+	 * @return the train
 	 */
 	public Train createTrain();
 
 	/**
-	 * Create an instance of {@link Create }
+	 * Create an instance of {@link Create }.
 	 * 
+	 * @return the creates the
 	 */
 	public Create createCreate();
 
 	/**
-	 * Create an instance of {@link TextBase64 }
+	 * Create an instance of {@link TextBase64 }.
 	 * 
+	 * @return the text base64
 	 */
 	public TextBase64 createTextBase64();
 
 	/**
-	 * Create an instance of {@link GetInformation }
+	 * Create an instance of {@link GetInformation }.
 	 * 
+	 * @return the gets the information
 	 */
 	public GetInformation createGetInformation();
 
 	/**
-	 * Create an instance of {@link WebReadCallList }
+	 * Create an instance of {@link WebReadCallList }.
 	 * 
+	 * @return the web read call list
 	 */
 	public WebReadCallList createWebReadCallList();
 
 	/**
-	 * Create an instance of {@link Classify }
+	 * Create an instance of {@link Classify }.
 	 * 
+	 * @return the classify
 	 */
 	public Classify createClassify();
 
 	/**
-	 * Create an instance of {@link Untrain }
+	 * Create an instance of {@link Untrain }.
 	 * 
+	 * @return the untrain
 	 */
 	public Untrain createUntrain();
 
 	/**
-	 * Create an instance of {@link TextList }
+	 * Create an instance of {@link TextList }.
 	 * 
+	 * @return the text list
 	 */
 	public TextList createTextList();
 
 	/**
-	 * Create an instance of {@link Remove }
+	 * Create an instance of {@link Remove }.
 	 * 
+	 * @return the removes the
 	 */
 	public Remove createRemove();
 
 	/**
-	 * Create an instance of {@link WebWriteCallList }
+	 * Create an instance of {@link WebWriteCallList }.
 	 * 
+	 * @return the web write call list
 	 */
 	public WebWriteCallList createWebWriteCallList();
 
 	/**
-	 * Create an instance of {@link RemoveClass }
+	 * Create an instance of {@link RemoveClass }.
 	 * 
+	 * @return the removes the class
 	 */
 	public RemoveClass createRemoveClass();
 

@@ -18,24 +18,23 @@ package com.google.code.uclassify.client;
 
 
 /**
+ * The Interface UClassifyAuthenticationClient.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public interface UClassifyAuthenticationClient extends UClassifyCommunicationClient {
 
     /**
-     * Method description
-     *
-     *
-     * @param apiConsumer
+     * Method description.
+     * 
+     * @param apiConsumer the api consumer
      */
     public void setApiConsumer(UClassifyConsumer apiConsumer);
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * Method description.
+     * 
+     * @return the api consumer
      */
     public UClassifyConsumer getApiConsumer();
 }

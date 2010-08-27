@@ -26,32 +26,39 @@ import org.junit.BeforeClass;
 import com.google.code.uclassify.client.constant.TestConstants;
 
 /**
+ * The Class UClassifyClientTest.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public abstract class UClassifyClientTest extends TestCase {
 
-    /** Field description */
+    /** Field description. */
     protected UClassifyClientFactory factory;
 
-    /** Field description */
+    /** Field description. */
 	protected static final String RESOURCE_MISSING_MESSAGE = "Please define a test %s in TestConstants.properties file."; 
     
 
     /**
-     * @throws java.lang.Exception
+     * Sets the up before class.
+     * 
+     * @throws java.lang.Exception      * @throws Exception the exception
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {}
 
     /**
-     * @throws java.lang.Exception
+     * Tear down after class.
+     * 
+     * @throws java.lang.Exception      * @throws Exception the exception
      */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {}
 
     /**
-     * @throws java.lang.Exception
+     * Sets the up.
+     * 
+     * @throws java.lang.Exception      * @throws Exception the exception
      */
     @Before
     public void setUp() throws Exception {
@@ -63,7 +70,9 @@ public abstract class UClassifyClientTest extends TestCase {
     }
 
     /**
-     * @throws java.lang.Exception
+     * Tear down.
+     * 
+     * @throws java.lang.Exception      * @throws Exception the exception
      */
     @After
     public void tearDown() throws Exception {
@@ -71,7 +80,10 @@ public abstract class UClassifyClientTest extends TestCase {
     }
     
 	/**
+	 * Assert not null or empty.
 	 * 
+	 * @param message the message
+	 * @param value the value
 	 */
 	protected static void assertNotNullOrEmpty(String message, String value) {
 		assertNotNull(message, value);

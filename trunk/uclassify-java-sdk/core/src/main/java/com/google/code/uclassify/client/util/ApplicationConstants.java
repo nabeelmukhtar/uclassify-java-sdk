@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 /**
  * The Class ApplicationConstants.
- *
+ * 
  * @author Nabeel Mukhtar
  */
 public final class ApplicationConstants {
@@ -78,6 +78,10 @@ public final class ApplicationConstants {
 
     /**
      * Get property as int.
+     * 
+     * @param key the key
+     * 
+     * @return the property
      */
     public static String getProperty(String key) {
         return applicationConstants.getProperty(key);
@@ -85,6 +89,10 @@ public final class ApplicationConstants {
 
     /**
      * Get property as int.
+     * 
+     * @param key the key
+     * 
+     * @return the int property
      */
     public static int getIntProperty(String key) {
         String property = applicationConstants.getProperty(key);
@@ -98,6 +106,10 @@ public final class ApplicationConstants {
 
     /**
      * Get property as boolean.
+     * 
+     * @param key the key
+     * 
+     * @return the boolean property
      */
     public static boolean getBooleanProperty(String key) {
         String property = applicationConstants.getProperty(key);
@@ -111,6 +123,10 @@ public final class ApplicationConstants {
 
     /**
      * Get property as double.
+     * 
+     * @param key the key
+     * 
+     * @return the double property
      */
     public static double getDoubleProperty(String key) {
         String property = applicationConstants.getProperty(key);
@@ -124,6 +140,10 @@ public final class ApplicationConstants {
 
     /**
      * Get property as long.
+     * 
+     * @param key the key
+     * 
+     * @return the long property
      */
     public static long getLongProperty(String key) {
         String property = applicationConstants.getProperty(key);
@@ -136,13 +156,12 @@ public final class ApplicationConstants {
     }
 
     /**
-	 * Gets the pattern property.
-	 * 
-	 * @param key
-	 *            the key
-	 * 
-	 * @return the pattern property
-	 */
+     * Gets the pattern property.
+     * 
+     * @param key the key
+     * 
+     * @return the pattern property
+     */
     public static Pattern getPatternProperty(String key) {
         String property = applicationConstants.getProperty(key);
 
@@ -155,6 +174,10 @@ public final class ApplicationConstants {
     
     /**
      * Get property as long.
+     * 
+     * @param s the s
+     * 
+     * @return true, if checks if is null or empty
      */
     private static boolean isNullOrEmpty(String s) {
         return ((s == null) || s.length() == 0);

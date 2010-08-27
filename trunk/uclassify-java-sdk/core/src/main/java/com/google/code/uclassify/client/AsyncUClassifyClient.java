@@ -31,18 +31,143 @@ import com.uclassify.api._1.responseschema.Classification;
  * @author Nabeel Mukhtar
  */
 public interface AsyncUClassifyClient extends UClassifyAuthenticationClient {
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the future< map< string, classification>>
+	 */
 	public Future<Map<String, Classification>> classify(String classifierName, List<String> texts);
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the future< map< string, classification>>
+	 */
 	public Future<Map<String, Classification>> classify(String classifierName, InputStream texts);
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param userName the user name
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the future< map< string, classification>>
+	 */
 	public Future<Map<String, Classification>> classify(String userName, String classifierName, List<String> texts);
+	
+	/**
+	 * Classify.
+	 * 
+	 * @param userName the user name
+	 * @param classifierName the classifier name
+	 * @param texts the texts
+	 * 
+	 * @return the future< map< string, classification>>
+	 */
 	public Future<Map<String, Classification>> classify(String userName, String classifierName, InputStream texts);
+	
+	/**
+	 * Gets the information.
+	 * 
+	 * @param classifierName the classifier name
+	 * 
+	 * @return the information
+	 */
 	public Future<List<ClassInformation>> getInformation(String classifierName);
+	
+	/**
+	 * Gets the information.
+	 * 
+	 * @param userName the user name
+	 * @param classifierName the classifier name
+	 * 
+	 * @return the information
+	 */
 	public Future<List<ClassInformation>> getInformation(String userName, String classifierName);
+	
+	/**
+	 * Creates the classifier.
+	 * 
+	 * @param classifierName the classifier name
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> createClassifier(String classifierName);
+	
+	/**
+	 * Removes the classifier.
+	 * 
+	 * @param classifierName the classifier name
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> removeClassifier(String classifierName);
+	
+	/**
+	 * Adds the class.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param className the class name
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> addClass(String classifierName, String className);
+	
+	/**
+	 * Removes the class.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param className the class name
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> removeClass(String classifierName, String className);
+	
+	/**
+	 * Train.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> train(String classifierName, Map<String, String> trainingTexts);
+	
+	/**
+	 * Train.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> train(String classifierName, InputStream trainingTexts);
+	
+	/**
+	 * Untrain.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> untrain(String classifierName, Map<String, String> trainingTexts);
+	
+	/**
+	 * Untrain.
+	 * 
+	 * @param classifierName the classifier name
+	 * @param trainingTexts the training texts
+	 * 
+	 * @return the future<?>
+	 */
 	public Future<?> untrain(String classifierName, InputStream trainingTexts);
 }

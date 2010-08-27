@@ -29,12 +29,13 @@ import com.google.code.uclassify.client.util.UClassifyUrls.UClassifyUrlBuilder;
 import com.uclassify.api._1.requestschema.ObjectFactory;
 
 /**
+ * The Class UClassifyJaxbClient.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public class UClassifyJaxbClient extends BaseUClassifyClient {
 
-    /** Field description */
+    /** Field description. */
     private static final SchemaElementFactory OBJECT_FACTORY = new JaxbElementFactory();
     
     /** Do not access directly. It may be null!!!. Use {@link #getRequestJaxbContext()} */
@@ -45,23 +46,21 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     
     /**
      * Constructs ...
-     *
-     *
-     * @param consumerKey
-     * @param consumerSecret
+     * 
+     * @param consumerKey the consumer key
+     * @param consumerSecret the consumer secret
      */
     public UClassifyJaxbClient(String consumerKey, String consumerSecret) {
         super(consumerKey, consumerSecret);
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param xmlContent
-     * @param <T>
-     *
-     * @return
+     * Method description.
+     * 
+     * @param xmlContent the xml content
+     * @param clazz the clazz
+     * 
+     * @return the T
      */
     @SuppressWarnings("unchecked")
     protected <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent) {
@@ -75,12 +74,11 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param element
-     *
-     * @return
+     * Method description.
+     * 
+     * @param element the element
+     * 
+     * @return the string
      */
     protected String marshallObject(Object element) {
         try {
@@ -96,29 +94,31 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     }
 
     /**
-     * Method description
-     *
-     * @return
+     * Method description.
+     * 
+     * @return the schema element factory
      */
     protected SchemaElementFactory createObjectFactory() {
     	return OBJECT_FACTORY;
     }
     
     /**
-     * Method description
-     *
-     *
-     * @param urlFormat
-     *
-     * @return
+     * Method description.
+     * 
+     * @param urlFormat the url format
+     * 
+     * @return the u classify url builder
      */
     protected UClassifyUrlBuilder createUClassifyUrlBuilder(String urlFormat) {
         return new UClassifyUrlBuilder(urlFormat);
     }
 
     /**
-     * Method description
-     *
+     * Method description.
+     * 
+     * @return the request jaxb context
+     * 
+     * @throws JAXBException the JAXB exception
      */
 	protected JAXBContext getRequestJaxbContext() throws JAXBException {
 		if (REQUEST_JAXB_CONTEXT == null ) {
@@ -127,6 +127,13 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
 		return REQUEST_JAXB_CONTEXT;
 	}
 
+	/**
+	 * Gets the response jaxb context.
+	 * 
+	 * @return the response jaxb context
+	 * 
+	 * @throws JAXBException the JAXB exception
+	 */
 	protected JAXBContext getResponseJaxbContext() throws JAXBException {
 		if (RESPONSE_JAXB_CONTEXT == null ) {
 			RESPONSE_JAXB_CONTEXT = JAXBContext.newInstance("com.uclassify.api._1.responseschema");
@@ -134,7 +141,14 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
 		return RESPONSE_JAXB_CONTEXT;
 	}
 	
+	/**
+	 * A factory for creating JaxbElement objects.
+	 */
 	private static class JaxbElementFactory extends ObjectFactory implements SchemaElementFactory {
+		
+		/**
+		 * Instantiates a new jaxb element factory.
+		 */
 		public JaxbElementFactory() {
 			super();
 		}

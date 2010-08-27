@@ -36,39 +36,32 @@ import com.uclassify.api._1.responseschema.ClassInformation;
 import com.uclassify.api._1.responseschema.Classification;
 
 /**
+ * The Class ClassifyExample.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public class ClassifyExample {
 
-    /**
-     * Consumer Key
-     */
+    /** Consumer Key. */
     private static final String READ_KEY = "readKey";
 	
-    /**
-     * ID
-     */
+    /** ID. */
     private static final String CLASSIFIER = "classifier";
     
-    /**
-     * Profile Type
-     */
+    /** Profile Type. */
     private static final String USER = "user";
     
-    /**
-     * Profile Type
-     */
+    /** Profile Type. */
     private static final String TEXT = "text";
     
-    /**
-     * Name of the help command line option.
-     */
+    /** Name of the help command line option. */
     private static final String HELP_OPTION = "help";
     
     /**
-	 * @param args
-	 */
+     * The main method.
+     * 
+     * @param args the args
+     */
 	public static void main(String[] args) {
 		Options options = buildOptions();
         try {
@@ -81,7 +74,10 @@ public class ClassifyExample {
 	}
 	
     /**
-     * Process command line options and call the service. 
+     * Process command line options and call the service.
+     * 
+     * @param line the line
+     * @param options the options
      */
     private static void processCommandLine(CommandLine line, Options options) {
         if(line.hasOption(HELP_OPTION)) {
@@ -114,6 +110,11 @@ public class ClassifyExample {
         }
     }
 	
+	/**
+	 * Prints the result.
+	 * 
+	 * @param informations the informations
+	 */
 	private static void printResult(List<ClassInformation> informations) {
 		System.out.println("===================== Classifier Info ========================");
 		System.out.println("Class Name:Total Count:Unique Features");
@@ -122,6 +123,11 @@ public class ClassifyExample {
 		}
 	}
 
+	/**
+	 * Prints the result.
+	 * 
+	 * @param classifications the classifications
+	 */
 	private static void printResult(Map<String, Classification> classifications) {
 		System.out.println("================ Classifications ==================");
 		for(String text : classifications.keySet()) {
@@ -135,8 +141,10 @@ public class ClassifyExample {
 	}
 
 	/**
-     * Build command line options object.
-     */
+	 * Build command line options object.
+	 * 
+	 * @return the options
+	 */
     private static Options buildOptions() {
        
         Options opts = new Options();
@@ -178,6 +186,8 @@ public class ClassifyExample {
     
     /**
      * Print help and usage.
+     * 
+     * @param options the options
      */
     private static void printHelp(Options options) {
         int width = 80;

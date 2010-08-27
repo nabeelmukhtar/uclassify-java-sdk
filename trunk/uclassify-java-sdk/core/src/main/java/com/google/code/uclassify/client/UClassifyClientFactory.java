@@ -55,7 +55,7 @@ public class UClassifyClientFactory {
     }
 	
     /**
-     * Sets the task executor to be used for asynchronous API calls. 
+     * Sets the task executor to be used for asynchronous API calls.
      * 
      * @param taskExecutor the task executor
      */
@@ -96,8 +96,6 @@ public class UClassifyClientFactory {
     /**
      * Creates a new LinkedInApiClient object.
      * 
-     * @param accessToken the access token
-     * 
      * @return the linked in api client
      */
     @SuppressWarnings("unchecked")
@@ -120,7 +118,7 @@ public class UClassifyClientFactory {
     /**
      * Creates a new LinkedInApiClient object.
      * 
-     * @param accessToken the access token
+     * @param implClass the impl class
      * 
      * @return the linked in api client
      */
@@ -136,8 +134,6 @@ public class UClassifyClientFactory {
     
     /**
      * Creates a new LinkedInApiClient object.
-     * 
-     * @param accessToken the access token
      * 
      * @return the async linked in api client
      */

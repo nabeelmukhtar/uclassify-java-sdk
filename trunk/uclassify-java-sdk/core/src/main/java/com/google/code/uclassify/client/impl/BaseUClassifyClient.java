@@ -65,32 +65,32 @@ import com.uclassify.api._1.responseschema.Classification;
 import com.uclassify.api._1.responseschema.ResponseEntity;
 
 /**
+ * The Class BaseUClassifyClient.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public abstract class BaseUClassifyClient implements UClassifyClient {
 
-    /** Field description */
+    /** Field description. */
     private static final String GZIP_ENCODING = "gzip";
 
-    /** Field description */
+    /** Field description. */
     private final SchemaElementFactory OBJECT_FACTORY = createObjectFactory();
 
     /** The static logger. */
     protected final Logger LOG = Logger.getLogger(getClass().getCanonicalName());
     
-    /** Field description */
+    /** Field description. */
     private UClassifyConsumer apiConsumer;
 
-    /** Field description */
+    /** Field description. */
     private Map<String, String> requestHeaders;
 
     /**
      * Constructs ...
-     *
-     *
-     * @param consumerKey
-     * @param consumerSecret
+     * 
+     * @param consumerKey the consumer key
+     * @param consumerSecret the consumer secret
      */
     protected BaseUClassifyClient(String consumerKey, String consumerSecret) {
         requestHeaders = new HashMap<String, String>();
@@ -142,6 +142,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         return apiConsumer;
     }
     
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#addClass(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void addClass(String classifierName, String className) {
 		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
@@ -166,6 +169,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                       HttpURLConnection.HTTP_OK);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#classify(java.lang.String, java.util.List)
+	 */
 	@Override
 	public Map<String, Classification> classify(String classifierName,
 			List<String> texts) {
@@ -215,12 +221,18 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#classify(java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public Map<String, Classification> classify(String classifierName,
 			InputStream texts) {
 		return classify(classifierName, getTextsList(texts));
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#classify(java.lang.String, java.lang.String, java.util.List)
+	 */
 	@Override
 	public Map<String, Classification> classify(String userName,
 			String classifierName, List<String> texts) {
@@ -271,12 +283,18 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 		return classifications;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#classify(java.lang.String, java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public Map<String, Classification> classify(String userName,
 			String classifierName, InputStream texts) {
 		return classify(userName, classifierName, getTextsList(texts));
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#createClassifier(java.lang.String)
+	 */
 	@Override
 	public void createClassifier(String classifierName) {
 		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
@@ -300,6 +318,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                       HttpURLConnection.HTTP_OK);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#getInformation(java.lang.String)
+	 */
 	@Override
 	public List<ClassInformation> getInformation(String classifierName) {
 		assertNotNullOrEmpty("API Read Key", getApiConsumer().getReadApiKey());
@@ -331,6 +352,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 		return Collections.emptyList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#getInformation(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public List<ClassInformation> getInformation(String userName, String classifierName) {
 		assertNotNullOrEmpty("API Read Key", getApiConsumer().getReadApiKey());
@@ -363,6 +387,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 		}
 		return Collections.emptyList();
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#removeClass(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void removeClass(String classifierName, String className) {
 		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
@@ -388,6 +416,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                       HttpURLConnection.HTTP_OK);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#removeClassifier(java.lang.String)
+	 */
 	@Override
 	public void removeClassifier(String classifierName) {
 		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
@@ -411,6 +442,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                       HttpURLConnection.HTTP_OK);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#train(java.lang.String, java.util.Map)
+	 */
 	@Override
 	public void train(String classifierName, Map<String, String> trainingTexts) {
 		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
@@ -451,11 +485,17 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                       HttpURLConnection.HTTP_OK);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#train(java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public void train(String classifierName, InputStream trainingTexts) {
 		train(classifierName, getTextsMap(trainingTexts));
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#untrain(java.lang.String, java.util.Map)
+	 */
 	@Override
 	public void untrain(String classifierName, Map<String, String> trainingTexts) {
 		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
@@ -496,11 +536,21 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                       HttpURLConnection.HTTP_OK);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.UClassifyClient#untrain(java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public void untrain(String classifierName, InputStream trainingTexts) {
 		untrain(classifierName, getTextsMap(trainingTexts));
 	}
     
+	/**
+	 * Gets the texts map.
+	 * 
+	 * @param texts the texts
+	 * 
+	 * @return the texts map
+	 */
 	protected Map<String, String> getTextsMap(InputStream texts) {
 		assertNotNull("input-stream", texts);
 		Map<String, String> textsMap = new HashMap<String, String>();
@@ -524,6 +574,13 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 		return textsMap;
 	}
 	
+	/**
+	 * Gets the texts list.
+	 * 
+	 * @param texts the texts
+	 * 
+	 * @return the texts list
+	 */
 	protected List<String> getTextsList(InputStream texts) {
 		assertNotNull("input-stream", texts);
 		List<String> textsList = new ArrayList<String>();
@@ -543,16 +600,12 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	}
 	
     /**
-     * Method description
-     *
-     *
-     *
-     *
-     * @param clazz
-     * @param is
-     * @param <T>
-     *
-     * @return
+     * Method description.
+     * 
+     * @param clazz the clazz
+     * @param is the is
+     * 
+     * @return the T
      */
     protected <T> T readResponse(Class<T> clazz, InputStream is) {
         try {
@@ -562,6 +615,13 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         }
     }
 
+    /**
+     * Read response.
+     * 
+     * @param is the is
+     * 
+     * @return the list< response entity>
+     */
     protected List<ResponseEntity> readResponse(InputStream is) {
     	com.uclassify.api._1.responseschema.Uclassify response = readResponse(com.uclassify.api._1.responseschema.Uclassify.class, is);
     	if (response != null) {
@@ -577,15 +637,15 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     }
     
     /**
-     *
-     *
-     * @param apiUrl
-     * @param xmlContent
-     * @param contentType
-     * @param method
-     * @param expected
-     *
-     * @return
+     * Call api method.
+     * 
+     * @param apiUrl the api url
+     * @param xmlContent the xml content
+     * @param contentType the content type
+     * @param method the method
+     * @param expected the expected
+     * 
+     * @return the input stream
      */
     protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
             int expected) {
@@ -635,11 +695,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param is
-     *
+     * Method description.
+     * 
+     * @param is the is
      */
     protected void closeStream(InputStream is) {
         try {
@@ -650,11 +708,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param connection
-     *
+     * Method description.
+     * 
+     * @param connection the connection
      */
     protected void closeConnection(HttpURLConnection connection) {
         try {
@@ -667,13 +723,14 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     }
     
     /**
-     * Method description
-     *
-     *
-     * @param is
-     * @param gzip
-     * @return
-     * @throws IOException
+     * Method description.
+     * 
+     * @param is the is
+     * @param gzip the gzip
+     * 
+     * @return the wrapped input stream
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     protected InputStream getWrappedInputStream(InputStream is, boolean gzip) throws IOException {
         if (gzip) {
@@ -685,20 +742,20 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
     /**
      * Get property as long.
-     *
-     * @param s
-     *
-     * @return
+     * 
+     * @param s the s
+     * 
+     * @return true, if checks if is null or empty
      */
     protected boolean isNullOrEmpty(String s) {
         return ((s == null) || (s.length() == 0));
     }
 
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert not null or empty.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertNotNullOrEmpty(String name, String value) {
         if (isNullOrEmpty(value)) {
@@ -707,10 +764,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     }
 
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert not null or empty.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertNotNullOrEmpty(String name, Collection<?> value) {
         if ((value == null) || value.isEmpty()) {
@@ -719,11 +776,11 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     }
 
     /**
-    *
-    *
-    * @param name
-    * @param value
-    */
+     * Assert not null or empty.
+     * 
+     * @param name the name
+     * @param value the value
+     */
    protected void assertNotNullOrEmpty(String name, Map<?, ?> value) {
        if ((value == null) || value.isEmpty()) {
            throw new IllegalArgumentException(name + " cannot be null or empty.");
@@ -731,10 +788,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
    }
    
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert positive number.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertPositiveNumber(String name, int value) {
         if (value < 0) {
@@ -743,10 +800,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     }
 
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert not null.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertNotNull(String name, Object value) {
         if (value == null) {
@@ -790,42 +847,37 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	}
     
     /**
-     * Method description
-     *
-     *
-     *
-     * @param clazz
-     * @param xmlContent
-     * @param <T>
-     *
-     * @return
+     * Method description.
+     * 
+     * @param clazz the clazz
+     * @param xmlContent the xml content
+     * 
+     * @return the T
      */
     protected abstract <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent);
 
     /**
-     * Method description
-     *
-     *
-     * @param element
-     *
-     * @return
+     * Method description.
+     * 
+     * @param element the element
+     * 
+     * @return the string
      */
     protected abstract String marshallObject(Object element);
 
     /**
-     * Method description
-     *
-     *
-     * @param urlFormat
-     *
-     * @return
+     * Method description.
+     * 
+     * @param urlFormat the url format
+     * 
+     * @return the u classify url builder
      */
     protected abstract UClassifyUrlBuilder createUClassifyUrlBuilder(String urlFormat);
 
     /**
-     * Method description
-     *
-     * @return
+     * Method description.
+     * 
+     * @return the schema element factory
      */
     protected abstract SchemaElementFactory createObjectFactory();
 }
