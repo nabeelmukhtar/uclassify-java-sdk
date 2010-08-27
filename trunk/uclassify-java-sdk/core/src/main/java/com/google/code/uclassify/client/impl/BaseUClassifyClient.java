@@ -155,6 +155,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         Map<String, String> textIds = new HashMap<String, String>();
+        Map<String, String> classifyIds = new HashMap<String, String>();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
         uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
@@ -177,6 +178,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	        classify.setId(idgenerator.generateId("Classify"));
 	        classify.setClassifierName(classifierName);
 	        classify.setTextId(textIds.get(text));
+	        classifyIds.put(classify.getId(), text);
 	        webReadCallList.getClassifyAndGetInformation().add(classify);
 		}
         
@@ -186,7 +188,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 		Map<String, Classification> classifications = new HashMap<String, Classification>();
 		for (ResponseEntity entity : response) {
 			com.uclassify.api._1.responseschema.Classify classify = (com.uclassify.api._1.responseschema.Classify) entity;
-			String text = getKeyByValue(textIds, classify.getId());
+			String text = classifyIds.get(classify.getId());
 			classifications.put(text, classify.getClassification());
 		}
 		return classifications;
@@ -205,6 +207,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         Map<String, String> textIds = new HashMap<String, String>();
+        Map<String, String> classifyIds = new HashMap<String, String>();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
         uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
@@ -228,6 +231,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	        classify.setClassifierName(classifierName);
 	        classify.setUsername(userName);
 	        classify.setTextId(textIds.get(text));
+	        classifyIds.put(classify.getId(), text);
 	        webReadCallList.getClassifyAndGetInformation().add(classify);
 		}
         
@@ -237,7 +241,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 		Map<String, Classification> classifications = new HashMap<String, Classification>();
 		for (ResponseEntity entity : response) {
 			com.uclassify.api._1.responseschema.Classify classify = (com.uclassify.api._1.responseschema.Classify) entity;
-			String text = getKeyByValue(textIds, classify.getId());
+			String text = classifyIds.get(classify.getId());
 			classifications.put(text, classify.getClassification());
 		}
 		return classifications;
@@ -453,15 +457,6 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 			closeStream(texts);
 		}
 		return textsList;
-	}
-	
-	protected String getKeyByValue(Map<String, String> textIds, String text) {
-		for (Map.Entry<String, String> entry : textIds.entrySet()) {
-			if (entry.getValue().equals(text)) {
-				return entry.getKey();
-			}
-		}
-		return null;
 	}
 	
     /**

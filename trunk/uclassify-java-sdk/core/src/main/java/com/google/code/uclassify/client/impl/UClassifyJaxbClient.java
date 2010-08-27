@@ -13,7 +13,6 @@ import javax.xml.bind.Unmarshaller;
 import com.google.code.uclassify.client.SchemaElementFactory;
 import com.google.code.uclassify.client.UClassifyException;
 import com.google.code.uclassify.client.util.UClassifyUrls.UClassifyUrlBuilder;
-import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 import com.uclassify.api._1.requestschema.ObjectFactory;
 
 /**
@@ -55,7 +54,7 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     protected <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent) {
         try {
             Unmarshaller u  = getResponseJaxbContext().createUnmarshaller();
-
+            
             return (T) u.unmarshal(xmlContent);
         } catch (JAXBException e) {
             throw new UClassifyException(e);
@@ -74,10 +73,9 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
         try {
             StringWriter writer = new StringWriter();
             Marshaller   marshaller = getRequestJaxbContext().createMarshaller();
-            marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NamespacePrefixMapperImpl());
 
             marshaller.marshal(element, writer);
-
+            
             return writer.toString();
         } catch (JAXBException e) {
             throw new UClassifyException(e);
@@ -127,25 +125,5 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
 		public JaxbElementFactory() {
 			super();
 		}
-	}
-	
-	class NamespacePrefixMapperImpl extends NamespacePrefixMapper {
-
-	    public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
-	        // I want this namespace to be mapped to "xsi"
-	        if( "http://www.w3.org/2001/XMLSchema-instance".equals(namespaceUri) )
-	            return "xsi";
-	         
-	        // I want the namespace foo to be the default namespace.
-	        if( "http://api.uclassify.com/1/RequestSchema".equals(namespaceUri) )
-	            return "";
-
-	        // otherwise I don't care. Just use the default suggestion, whatever it may be.
-	        return suggestion;
-	    }
-	    
-	    public String[] getPreDeclaredNamespaceUris() {
-	        return new String[] { "urn:abc", "urn:def" };
-	    }
 	}
 }
