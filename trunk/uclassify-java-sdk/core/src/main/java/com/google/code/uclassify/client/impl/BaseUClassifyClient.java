@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
 import java.util.zip.GZIPInputStream;
 
 import com.google.code.uclassify.client.SchemaElementFactory;
@@ -486,14 +487,13 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 		Map<String, String> textsMap = new HashMap<String, String>();
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(texts));
-			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				// TODO-NM: Do proper CVS parsing.
-				int index = line.indexOf(',');
-				if (index > 0 && index < line.length() - 1) {
-					textsMap.put(line.substring(0, index), line.substring(index + 1));
+				Matcher matcher = ApplicationConstants.CVS_REGEX_PATTERN.matcher(line);
+				if (matcher.find() && matcher.groupCount() == 2) {
+					textsMap.put(matcher.group(1), matcher.group(2));
 				} else {
+					LOG.warning("Input should be a CSV file/stream with only two fields:class,text.");
 					textsMap.put(line, line);
 				}
 			}

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  * The Class ApplicationConstants.
@@ -53,6 +54,9 @@ public final class ApplicationConstants {
     
     /** The Constant READ_TIMEOUT. */
     public static final int READ_TIMEOUT = getIntProperty("com.google.code.uclassify.client.readTimeout");
+    
+    /** The Constant CVS_REGEX_PATTERN. */
+    public static final Pattern CVS_REGEX_PATTERN = getPatternProperty("com.google.code.uclassify.client.csvRegex");
     
     /**
      * Instantiates a new application constants.
@@ -118,6 +122,24 @@ public final class ApplicationConstants {
         }
     }
 
+    /**
+	 * Gets the pattern property.
+	 * 
+	 * @param key
+	 *            the key
+	 * 
+	 * @return the pattern property
+	 */
+    public static Pattern getPatternProperty(String key) {
+        String property = applicationConstants.getProperty(key);
+
+        if (isNullOrEmpty(property)) {
+            return null;
+        } else {
+            return Pattern.compile(property);
+        }
+    }
+    
     /**
      * Get property as long.
      */
