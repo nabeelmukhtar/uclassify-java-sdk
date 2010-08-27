@@ -12,7 +12,7 @@ import javax.xml.bind.Unmarshaller;
 
 import com.google.code.uclassify.client.SchemaElementFactory;
 import com.google.code.uclassify.client.UClassifyClientException;
-import com.google.code.uclassify.client.constant.UClassifyUrls.UClassifyUrlBuilder;
+import com.google.code.uclassify.client.util.UClassifyUrls.UClassifyUrlBuilder;
 import com.uclassify.api._1.requestschema.ObjectFactory;
 
 /**

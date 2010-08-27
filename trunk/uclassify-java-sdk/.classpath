@@ -4,8 +4,6 @@
 	<classpathentry kind="src" path="schema/src/main/resources"/>
 	<classpathentry excluding="com/google/code/uclassify/client/impl/UClassifyXppClient.java" kind="src" path="core/src/main/java"/>
 	<classpathentry kind="src" path="core/src/main/resources"/>
-	<classpathentry kind="src" path="schema/src/test/java"/>
-	<classpathentry kind="src" path="schema/src/test/resources"/>
 	<classpathentry excluding="com/google/code/uclassify/client/UClassifyXppClientTest.java" kind="src" path="core/src/test/java"/>
 	<classpathentry kind="src" path="core/src/test/resources"/>
 	<classpathentry kind="src" path="core/src/examples/java"/>

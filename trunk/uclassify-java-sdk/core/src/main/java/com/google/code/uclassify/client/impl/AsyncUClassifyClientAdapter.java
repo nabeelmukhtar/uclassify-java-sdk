@@ -6,8 +6,8 @@ package com.google.code.uclassify.client.impl;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
-import com.google.code.uclassify.client.AsyncUClassifyClient;
 import com.google.code.uclassify.client.AsyncResponseHandler;
+import com.google.code.uclassify.client.AsyncUClassifyClient;
 import com.google.code.uclassify.client.UClassifyClient;
 import com.google.code.uclassify.client.UClassifyConsumer;
 import com.uclassify.api._1.responseschema.ResponseEntity;
