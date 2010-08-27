@@ -131,6 +131,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     
 	@Override
 	public void addClass(String classifierName, String className) {
+		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		assertNotNullOrEmpty("className", className);
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
@@ -152,6 +155,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	@Override
 	public Map<String, Classification> classify(String classifierName,
 			List<String> texts) {
+		assertNotNullOrEmpty("API Read Key", getApiConsumer().getReadApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		assertNotNullOrEmpty("texts", texts);
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         Map<String, String> textIds = new HashMap<String, String>();
@@ -204,6 +210,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	@Override
 	public Map<String, Classification> classify(String userName,
 			String classifierName, List<String> texts) {
+		assertNotNullOrEmpty("API Read Key", getApiConsumer().getReadApiKey());
+		assertNotNullOrEmpty("userName", userName);
+		assertNotNullOrEmpty("classifierName", classifierName);
+		assertNotNullOrEmpty("texts", texts);
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         Map<String, String> textIds = new HashMap<String, String>();
@@ -255,6 +265,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
 	@Override
 	public void createClassifier(String classifierName) {
+		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
@@ -274,6 +287,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
 	@Override
 	public List<ClassInformation> getInformation(String classifierName) {
+		assertNotNullOrEmpty("API Read Key", getApiConsumer().getReadApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
@@ -302,6 +318,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
 	@Override
 	public void removeClass(String classifierName, String className) {
+		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		assertNotNullOrEmpty("className", className);
+		
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
@@ -322,6 +342,9 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
 	@Override
 	public void removeClassifier(String classifierName) {
+		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
@@ -341,6 +364,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
 	@Override
 	public void train(String classifierName, Map<String, String> trainingTexts) {
+		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		assertNotNullOrEmpty("trainingTexts", trainingTexts);
+		
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         Map<String, String> textIds = new HashMap<String, String>();
@@ -381,6 +408,10 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 
 	@Override
 	public void untrain(String classifierName, Map<String, String> trainingTexts) {
+		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		assertNotNullOrEmpty("trainingTexts", trainingTexts);
+		
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
         IdGenerator idgenerator = IdGenerator.newInstance();
         Map<String, String> textIds = new HashMap<String, String>();
@@ -420,6 +451,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	}
     
 	protected Map<String, String> getTextsMap(InputStream texts) {
+		assertNotNull("input-stream", texts);
 		Map<String, String> textsMap = new HashMap<String, String>();
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(texts));
@@ -443,6 +475,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	}
 	
 	protected List<String> getTextsList(InputStream texts) {
+		assertNotNull("input-stream", texts);
 		List<String> textsList = new ArrayList<String>();
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(texts));
@@ -635,6 +668,18 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         }
     }
 
+    /**
+    *
+    *
+    * @param name
+    * @param value
+    */
+   protected void assertNotNullOrEmpty(String name, Map<?, ?> value) {
+       if ((value == null) || value.isEmpty()) {
+           throw new IllegalArgumentException(name + " cannot be null or empty.");
+       }
+   }
+   
     /**
      *
      *

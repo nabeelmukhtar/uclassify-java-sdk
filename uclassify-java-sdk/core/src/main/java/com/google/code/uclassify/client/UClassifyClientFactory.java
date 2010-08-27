@@ -70,8 +70,6 @@ public class UClassifyClientFactory {
      * @return the linked in api client factory
      */
     public static synchronized UClassifyClientFactory newInstance(UClassifyConsumer apiConsumer) {
-    	validateConsumerKey(apiConsumer);
-    	
         UClassifyClientFactory factory = factoriesMap.get(apiConsumer);
 
         if (factory == null) {
@@ -159,19 +157,4 @@ public class UClassifyClientFactory {
     public AsyncUClassifyClient createAsyncUClassifyClient(String token, String tokenSecret) {
         return createAsyncUClassifyClient();
     }
-    
-    /**
-     * 
-     */
-	private static void validateConsumerKey(UClassifyConsumer apiConsumer) {
-		if (apiConsumer == null) {
-    		throw new IllegalArgumentException("api consumer cannot be null.");
-    	}
-    	if (apiConsumer.getReadApiKey() == null || apiConsumer.getReadApiKey().length() == 0) {
-    		throw new IllegalArgumentException("read key cannot be null or empty.");
-    	}
-//    	if (apiConsumer.getConsumerSecret() == null || apiConsumer.getConsumerSecret().length() == 0) {
-//    		throw new IllegalArgumentException("consumer secret cannot be null or empty.");
-//    	}
-	}
 }
