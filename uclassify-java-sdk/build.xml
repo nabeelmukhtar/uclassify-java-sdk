@@ -6,22 +6,16 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="uclassify-java-sdk">
     <property environment="env"/>
-    <property name="junit.output.dir" value="junit"/>
+    <property name="ECLIPSE_HOME" value="../../../eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
     <path id="uclassify-java-sdk.classpath">
         <pathelement location="bin"/>
-        <pathelement location="lib/signpost-core-1.2.1.1.jar"/>
-        <pathelement location="lib/commons-codec-1.3.jar"/>
-        <pathelement location="dev-lib/kxml2-2.3.0.jar"/>
         <pathelement location="dev-lib/junit-4.5.jar"/>
-        <pathelement location="dev-lib/jaxb-xjc.jar"/>
         <pathelement location="lib/commons-cli-1.2.jar"/>
+        <pathelement location="dev-lib/kxml2-2.3.0.jar"/>
     </path>
-	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
-		<classpath refid="uclassify-java-sdk.classpath"/>
-	</taskdef>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -37,12 +31,6 @@
             <fileset dir="core/src/main/resources" excludes="**/*.launch, **/*.java"/>
         </copy>
         <copy includeemptydirs="false" todir="bin">
-            <fileset dir="schema/src/test/java" excludes="**/*.launch, **/*.java"/>
-        </copy>
-        <copy includeemptydirs="false" todir="bin">
-            <fileset dir="schema/src/test/resources" excludes="**/*.launch, **/*.java"/>
-        </copy>
-        <copy includeemptydirs="false" todir="bin">
             <fileset dir="core/src/test/java" excludes="**/*.launch, **/*.java"/>
         </copy>
         <copy includeemptydirs="false" todir="bin">
@@ -56,7 +44,7 @@
         <delete dir="bin"/>
     </target>
     <target depends="clean" name="cleanall"/>
-    <target depends="cleanall,build-subprojects,build-project" name="build"/>
+    <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
@@ -70,6 +58,7 @@
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="core/src/main/java"/>
+            <exclude name="com/google/code/uclassify/client/impl/UClassifyXppClient.java"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
@@ -77,15 +66,8 @@
             <classpath refid="uclassify-java-sdk.classpath"/>
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
-            <src path="schema/src/test/java"/>
-            <classpath refid="uclassify-java-sdk.classpath"/>
-        </javac>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
-            <src path="schema/src/test/resources"/>
-            <classpath refid="uclassify-java-sdk.classpath"/>
-        </javac>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="core/src/test/java"/>
+            <exclude name="com/google/code/uclassify/client/UClassifyXppClientTest.java"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
@@ -98,33 +80,22 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target name="junitreport">
-        <junitreport todir="${junit.output.dir}">
-            <fileset dir="${junit.output.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="${junit.output.dir}"/>
-        </junitreport>
-    </target>
-    <target name="generate-schema">
-        <java classname="com.thaiopensource.relaxng.translate.Driver" dir="${workspace_loc:uclassify-java-sdk/schema/src/test/resources/com/google/code/linkedinapi/schema/xml}" failonerror="true" fork="yes">
-            <arg line="*.xml linkedin-api.xsd"/>
+    <target name="ClassifyExample">
+        <java classname="com.google.code.uclassify.client.examples.ClassifyExample" failonerror="true" fork="yes">
+            <arg line="-readKey xxx -classifier Topics -user uClassify -text &quot;I am working on hadoop.&quot;"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </java>
     </target>
-    <target name="generate-schema-classes">
-		<xjc target="src">
-		  <schema dir="src" includes="**/*.xsd" excludes="**/debug.xsd"/>
-		  <arg value="-nv" />
-		</xjc>
-	</target>
-    <target name="javadoc">
-        <javadoc access="private" author="true" classpath="lib/signpost-core-1.1-SNAPSHOT.jar;dev-lib/jaxb-xjc.jar;dev-lib/trang.jar;lib/commons-codec-1.3.jar;dev-lib/junit-4.5.jar;lib/commons-cli-1.2.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="com.google.code.linkedinapi.client.oauth,com.google.code.linkedinapi.client.enumeration,com.google.code.linkedinapi.schema.impl,com.google.code.linkedinapi.schema.dom,com.google.code.linkedinapi.client.impl" source="1.6" sourcefiles="schema/src/main/java/com/google/code/linkedinapi/schema/ApiStandardProfileRequest.java,schema/src/main/java/com/google/code/linkedinapi/schema/Update.java,schema/src/main/java/com/google/code/linkedinapi/schema/ItemContent.java,schema/src/main/java/com/google/code/linkedinapi/schema/Error.java,schema/src/main/java/com/google/code/linkedinapi/schema/SchemaElementFactory.java,schema/src/main/java/com/google/code/linkedinapi/schema/ObjectFactory.java,schema/src/main/java/com/google/code/linkedinapi/schema/RelationToViewer.java,schema/src/main/java/com/google/code/linkedinapi/schema/Location.java,schema/src/main/java/com/google/code/linkedinapi/schema/InvitationRequest.java,schema/src/main/java/com/google/code/linkedinapi/schema/Network.java,schema/src/main/java/com/google/code/linkedinapi/schema/SiteStandardProfileRequest.java,schema/src/main/java/com/google/code/linkedinapi/schema/MemberUrlResources.java,schema/src/main/java/com/google/code/linkedinapi/schema/MailboxItem.java,schema/src/main/java/com/google/code/linkedinapi/schema/UpdateComments.java,schema/src/main/java/com/google/code/linkedinapi/schema/Positions.java,schema/src/main/java/com/google/code/linkedinapi/schema/Position.java,schema/src/main/java/com/google/code/linkedinapi/schema/Headers.java,schema/src/main/java/com/google/code/linkedinapi/schema/Company.java,core/src/main/java/com/google/code/linkedinapi/client/LinkedInAuthenticationClient.java,schema/src/main/java/com/google/code/linkedinapi/schema/UpdateContent.java,schema/src/main/java/com/google/code/linkedinapi/schema/Authorization.java,core/src/main/java/com/google/code/linkedinapi/client/LinkedInApiClient.java,schema/src/main/java/com/google/code/linkedinapi/schema/Adapter2.java,schema/src/main/java/com/google/code/linkedinapi/schema/Educations.java,schema/src/main/java/com/google/code/linkedinapi/schema/Recipients.java,schema/src/main/java/com/google/code/linkedinapi/schema/Person.java,core/src/main/java/com/google/code/linkedinapi/client/AsyncLinkedInApiClient.java,schema/src/main/java/com/google/code/linkedinapi/schema/Property.java,schema/src/main/java/com/google/code/linkedinapi/schema/UpdateComment.java,schema/src/main/java/com/google/code/linkedinapi/schema/NetworkStats.java,schema/src/main/java/com/google/code/linkedinapi/schema/NetworkUpdateContentType.java,schema/src/main/java/com/google/code/linkedinapi/schema/Education.java,schema/src/main/java/com/google/code/linkedinapi/schema/Connections.java,schema/src/main/java/com/google/code/linkedinapi/schema/SchemaEntity.java,core/src/main/java/com/google/code/linkedinapi/client/constant/ApplicationConstants.java,schema/src/main/java/com/google/code/linkedinapi/schema/EndDate.java,core/src/main/java/com/google/code/linkedinapi/client/LinkedInApiClientException.java,schema/src/main/java/com/google/code/linkedinapi/schema/MemberUrl.java,schema/src/main/java/com/google/code/linkedinapi/schema/People.java,schema/src/main/java/com/google/code/linkedinapi/schema/Country.java,schema/src/main/java/com/google/code/linkedinapi/schema/Recipient.java,schema/src/main/java/com/google/code/linkedinapi/schema/Activity.java,schema/src/main/java/com/google/code/linkedinapi/schema/StartDate.java,schema/src/main/java/com/google/code/linkedinapi/schema/HttpHeader.java,core/src/main/java/com/google/code/linkedinapi/client/LinkedInApiClientFactory.java,schema/src/main/java/com/google/code/linkedinapi/schema/Adapter1.java,schema/src/main/java/com/google/code/linkedinapi/schema/NetworkUpdateReturnType.java,schema/src/main/java/com/google/code/linkedinapi/schema/Updates.java,schema/src/main/java/com/google/code/linkedinapi/schema/InviteConnectType.java,core/src/main/java/com/google/code/linkedinapi/client/constant/LinkedInApiUrls.java" sourcepath="schema/src/test/resources;core/src/main/java;schema/src/main/resources;core/src/test/java;schema/src/test/java;core/src/test/resources;core/src/examples/java;core/src/main/resources;schema/src/main/java" splitindex="true" use="true" version="true"/>
+    <target name="TrainExample">
+        <java classname="com.google.code.uclassify.client.examples.TrainExample" failonerror="true" fork="yes">
+            <arg line="-writeKey xxx -classifier testclassifier -text C:\\train.csv"/>
+            <classpath refid="uclassify-java-sdk.classpath"/>
+        </java>
     </target>
-    <target name="jar" depends="build" description="Create jar">
-		<jar jarfile="dist/uclassify-java-sdk.jar" basedir="bin" manifest="./manifest.mf"/>
-    </target>
-    <target name="archive" depends="jar, javadoc" description="Create project archive">
-		<jar jarfile="uclassify-java-sdk-0.1-SNAPSHOT.zip" basedir="."/>
+    <target name="ClassifierExample">
+        <java classname="com.google.code.uclassify.client.examples.ClassifierExample" failonerror="true" fork="yes">
+            <arg line="-writeKey xxx -classifier nabeelclassifier"/>
+            <classpath refid="uclassify-java-sdk.classpath"/>
+        </java>
     </target>
 </project>
