@@ -42,13 +42,11 @@ public abstract class UClassifyClientTest extends TestCase {
      */
     @Before
     public void setUp() throws Exception {
-    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Consumer Key"), TestConstants.LINKED_IN_TEST_CONSUMER_KEY);
-    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Consumer Secret"), TestConstants.LINKED_IN_TEST_CONSUMER_SECRET);
+    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Read Key"), TestConstants.UCLASSIFY_TEST_READ_KEY);
+    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Write Key"), TestConstants.UCLASSIFY_TEST_WRITE_KEY);
     	factory =
-            UClassifyClientFactory.newInstance(TestConstants.LINKED_IN_TEST_CONSUMER_KEY,
-                TestConstants.LINKED_IN_TEST_CONSUMER_SECRET);
-    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Access Token Key"), TestConstants.LINKED_IN_TEST_ACCESS_TOKEN_KEY);
-    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Access Token Secret"), TestConstants.LINKED_IN_TEST_ACCESS_TOKEN_SECRET);
+            UClassifyClientFactory.newInstance(TestConstants.UCLASSIFY_TEST_READ_KEY,
+                TestConstants.UCLASSIFY_TEST_WRITE_KEY);
     }
 
     /**
