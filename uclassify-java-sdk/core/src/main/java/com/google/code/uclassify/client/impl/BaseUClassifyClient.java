@@ -153,6 +153,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
         uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
+        webWriteCallList.setMaxSize(0L);
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
 		uclassify.setWriteCalls(webWriteCallList);
@@ -287,6 +288,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
         uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
+        webWriteCallList.setMaxSize(0L);
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
 		uclassify.setWriteCalls(webWriteCallList);
@@ -373,6 +375,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
         uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
+        webWriteCallList.setMaxSize(0L);
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
 		uclassify.setWriteCalls(webWriteCallList);
@@ -396,6 +399,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
         uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
+        webWriteCallList.setMaxSize(0L);
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
 		uclassify.setWriteCalls(webWriteCallList);
@@ -431,6 +435,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         uclassify.setTexts(textList);
         
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
+        webWriteCallList.setMaxSize(0L);
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
 		uclassify.setWriteCalls(webWriteCallList);
@@ -475,6 +480,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         uclassify.setTexts(textList);
         
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
+        webWriteCallList.setMaxSize(0L);
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
 		uclassify.setWriteCalls(webWriteCallList);
