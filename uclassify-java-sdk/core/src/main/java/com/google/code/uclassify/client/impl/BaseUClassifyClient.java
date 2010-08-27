@@ -318,6 +318,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	@Override
 	public List<ClassInformation> getInformation(String userName, String classifierName) {
 		assertNotNullOrEmpty("API Read Key", getApiConsumer().getReadApiKey());
+		assertNotNullOrEmpty("userName", userName);
 		assertNotNullOrEmpty("classifierName", classifierName);
 		
         UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
