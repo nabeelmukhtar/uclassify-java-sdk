@@ -89,15 +89,15 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     /**
      * Constructs ...
      * 
-     * @param consumerKey the consumer key
-     * @param consumerSecret the consumer secret
+     * @param readApiKey the read api key
+     * @param writeApiKey the write api key
      */
-    protected BaseUClassifyClient(String consumerKey, String consumerSecret) {
+    protected BaseUClassifyClient(String readApiKey, String writeApiKey) {
         requestHeaders = new HashMap<String, String>();
 
         // by default we compress contents
         requestHeaders.put("Accept-Encoding", "gzip, deflate");
-        apiConsumer = new UClassifyConsumer(consumerKey, consumerSecret);
+        apiConsumer = new UClassifyConsumer(readApiKey, writeApiKey);
     }
 
     /**
