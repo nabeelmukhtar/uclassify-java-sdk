@@ -34,38 +34,22 @@ public final class ApplicationConstants {
     }
 
     /** The Constant VALIDATE_XML. */
-    public static final boolean VALIDATE_XML = getBooleanProperty("com.google.code.linkedinapi.client.validateXml");
-
-    /** The Constant OAUTH_VERSION. */
-    public static final String OAUTH_VERSION = getProperty("com.google.code.linkedinapi.client.oauthVersion");
-
-    /** The Constant DEFAULT_RESULT_SIZE. */
-    public static final int DEFAULT_RESULT_SIZE =
-        getIntProperty("com.google.code.linkedinapi.client.defaultResultSize");
+    public static final boolean VALIDATE_XML = getBooleanProperty("com.google.code.uclassify.client.validateXml");
 
     /** The Constant CONTENT_TYPE_XML. */
-    public static final String CONTENT_TYPE_XML = getProperty("com.google.code.linkedinapi.client.contentTypeXml");
+    public static final String CONTENT_TYPE_XML = getProperty("com.google.code.uclassify.client.contentTypeXml");
 
     /** The Constant CONTENT_ENCODING. */
-    public static final String CONTENT_ENCODING = getProperty("com.google.code.linkedinapi.client.encoding");
+    public static final String CONTENT_ENCODING = getProperty("com.google.code.uclassify.client.encoding");
 
     /** The Constant CLIENT_DEFAULT_IMPL. */
-    public static final String CLIENT_DEFAULT_IMPL = getProperty("com.google.code.linkedinapi.client.defaultImpl");
+    public static final String CLIENT_DEFAULT_IMPL = getProperty("com.google.code.uclassify.client.defaultImpl");
 
     /** The Constant CONNECT_TIMEOUT. */
-    public static final int CONNECT_TIMEOUT = getIntProperty("com.google.code.linkedinapi.client.connectTimeout");
+    public static final int CONNECT_TIMEOUT = getIntProperty("com.google.code.uclassify.client.connectTimeout");
     
     /** The Constant READ_TIMEOUT. */
-    public static final int READ_TIMEOUT = getIntProperty("com.google.code.linkedinapi.client.readTimeout");
-    
-    /** The Constant AUTH_HEADER_NAME. */
-    public static final String AUTH_HEADER_NAME = getProperty("com.google.code.linkedinapi.client.authHeaderName");
-    
-    /** The Constant FORMAT_HEADER_NAME. */
-    public static final String FORMAT_HEADER_NAME = getProperty("com.google.code.linkedinapi.client.formatHeaderName");
-    
-    /** The Constant AUTH_HEADER_NAME. */
-    public static final String EXPIRATION_PARAMETER_NAME = getProperty("com.google.code.linkedinapi.client.expirationParameterName");
+    public static final int READ_TIMEOUT = getIntProperty("com.google.code.uclassify.client.readTimeout");
     
     /**
      * Instantiates a new application constants.

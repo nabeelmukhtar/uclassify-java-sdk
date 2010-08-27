@@ -10,9 +10,8 @@ import java.util.Date;
  *
  *
  */
-public class UClassifyClientException extends RuntimeException {
+public class UClassifyException extends RuntimeException {
 	private int statusCode;
-	private String errorCode;
 	private Date timestamp;
 
     /**
@@ -24,7 +23,7 @@ public class UClassifyClientException extends RuntimeException {
      * Constructs ...
      *
      */
-    public UClassifyClientException() {
+    public UClassifyException() {
         super();
     }
 
@@ -34,7 +33,7 @@ public class UClassifyClientException extends RuntimeException {
      *
      * @param message
      */
-    public UClassifyClientException(String message) {
+    public UClassifyException(String message) {
         super(message);
     }
 
@@ -44,7 +43,7 @@ public class UClassifyClientException extends RuntimeException {
      *
      * @param cause
      */
-    public UClassifyClientException(Throwable cause) {
+    public UClassifyException(Throwable cause) {
         super(cause);
     }
 
@@ -55,7 +54,7 @@ public class UClassifyClientException extends RuntimeException {
      * @param message
      * @param cause
      */
-    public UClassifyClientException(String message, Throwable cause) {
+    public UClassifyException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -66,10 +65,9 @@ public class UClassifyClientException extends RuntimeException {
      * @param message
      * @param cause
      */
-    public UClassifyClientException(String message, int statusCode , String errorCode, Date timestamp) {
+    public UClassifyException(String message, int statusCode, Date timestamp) {
         super(message);
         this.statusCode = statusCode;
-        this.errorCode = errorCode;
         this.timestamp = timestamp;
     }
     
@@ -85,20 +83,6 @@ public class UClassifyClientException extends RuntimeException {
 	 */
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
-	}
-
-	/**
-	 * @return the errorCode
-	 */
-	public String getErrorCode() {
-		return errorCode;
-	}
-
-	/**
-	 * @param errorCode the errorCode to set
-	 */
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
 	}
 
 	/**

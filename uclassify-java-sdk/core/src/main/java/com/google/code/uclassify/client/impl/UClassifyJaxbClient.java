@@ -11,8 +11,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import com.google.code.uclassify.client.SchemaElementFactory;
-import com.google.code.uclassify.client.UClassifyClientException;
+import com.google.code.uclassify.client.UClassifyException;
 import com.google.code.uclassify.client.util.UClassifyUrls.UClassifyUrlBuilder;
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 import com.uclassify.api._1.requestschema.ObjectFactory;
 
 /**
@@ -22,14 +23,14 @@ import com.uclassify.api._1.requestschema.ObjectFactory;
 public class UClassifyJaxbClient extends BaseUClassifyClient {
 
     /** Field description */
-    private static final String JAXB_PACKAGE_NAME = "com.google.code.linkedinapi.schema";
-    
-    /** Field description */
     private static final SchemaElementFactory OBJECT_FACTORY = new JaxbElementFactory();
     
-    /** Do not access directly. It may be null!!!. Use {@link #getJaxbContext()} */
-    private static JAXBContext JAXB_CONTEXT;
+    /** Do not access directly. It may be null!!!. Use {@link #getRequestJaxbContext()} */
+    private static JAXBContext REQUEST_JAXB_CONTEXT;
 
+    /** Do not access directly. It may be null!!!. Use {@link #getResponseJaxbContext()} */
+    private static JAXBContext RESPONSE_JAXB_CONTEXT;
+    
     /**
      * Constructs ...
      *
@@ -53,11 +54,11 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     @SuppressWarnings("unchecked")
     protected <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent) {
         try {
-            Unmarshaller u  = getJaxbContext().createUnmarshaller();
+            Unmarshaller u  = getResponseJaxbContext().createUnmarshaller();
 
             return (T) u.unmarshal(xmlContent);
         } catch (JAXBException e) {
-            throw new UClassifyClientException(e);
+            throw new UClassifyException(e);
         }
     }
 
@@ -72,13 +73,14 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     protected String marshallObject(Object element) {
         try {
             StringWriter writer = new StringWriter();
-            Marshaller   m = getJaxbContext().createMarshaller();
+            Marshaller   marshaller = getRequestJaxbContext().createMarshaller();
+            marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NamespacePrefixMapperImpl());
 
-            m.marshal(element, writer);
+            marshaller.marshal(element, writer);
 
             return writer.toString();
         } catch (JAXBException e) {
-            throw new UClassifyClientException(e);
+            throw new UClassifyException(e);
         }
     }
 
@@ -99,7 +101,7 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
      *
      * @return
      */
-    protected UClassifyUrlBuilder createLinkedInApiUrlBuilder(String urlFormat) {
+    protected UClassifyUrlBuilder createUClassifyUrlBuilder(String urlFormat) {
         return new UClassifyUrlBuilder(urlFormat);
     }
 
@@ -107,24 +109,43 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
      * Method description
      *
      */
-	protected JAXBContext getJaxbContext() throws JAXBException {
-		if (JAXB_CONTEXT == null ) {
-			JAXB_CONTEXT = JAXBContext.newInstance(JAXB_PACKAGE_NAME);
+	protected JAXBContext getRequestJaxbContext() throws JAXBException {
+		if (REQUEST_JAXB_CONTEXT == null ) {
+			REQUEST_JAXB_CONTEXT = JAXBContext.newInstance("com.uclassify.api._1.requestschema");
 		}
-		return JAXB_CONTEXT;
+		return REQUEST_JAXB_CONTEXT;
 	}
 
-    /**
-     * Method description
-     *
-     */
-	protected void setJaxbContext(JAXBContext context) {
-		JAXB_CONTEXT = context;
+	protected JAXBContext getResponseJaxbContext() throws JAXBException {
+		if (RESPONSE_JAXB_CONTEXT == null ) {
+			RESPONSE_JAXB_CONTEXT = JAXBContext.newInstance("com.uclassify.api._1.responseschema");
+		}
+		return RESPONSE_JAXB_CONTEXT;
 	}
 	
 	private static class JaxbElementFactory extends ObjectFactory implements SchemaElementFactory {
 		public JaxbElementFactory() {
 			super();
 		}
+	}
+	
+	class NamespacePrefixMapperImpl extends NamespacePrefixMapper {
+
+	    public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
+	        // I want this namespace to be mapped to "xsi"
+	        if( "http://www.w3.org/2001/XMLSchema-instance".equals(namespaceUri) )
+	            return "xsi";
+	         
+	        // I want the namespace foo to be the default namespace.
+	        if( "http://api.uclassify.com/1/RequestSchema".equals(namespaceUri) )
+	            return "";
+
+	        // otherwise I don't care. Just use the default suggestion, whatever it may be.
+	        return suggestion;
+	    }
+	    
+	    public String[] getPreDeclaredNamespaceUris() {
+	        return new String[] { "urn:abc", "urn:def" };
+	    }
 	}
 }
