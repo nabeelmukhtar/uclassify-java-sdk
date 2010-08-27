@@ -23,6 +23,7 @@ public interface AsyncUClassifyClient extends UClassifyAuthenticationClient {
 	public Future<Map<String, Classification>> classify(String userName, String classifierName, List<String> texts);
 	public Future<Map<String, Classification>> classify(String userName, String classifierName, InputStream texts);
 	public Future<List<ClassInformation>> getInformation(String classifierName);
+	public Future<List<ClassInformation>> getInformation(String userName, String classifierName);
 	public Future<?> createClassifier(String classifierName);
 	public Future<?> removeClassifier(String classifierName);
 	public Future<?> addClass(String classifierName, String className);

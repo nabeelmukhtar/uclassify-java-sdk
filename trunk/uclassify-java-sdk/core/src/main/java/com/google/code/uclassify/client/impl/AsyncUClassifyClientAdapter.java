@@ -195,6 +195,16 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
 	}
 
 	@Override
+	public Future<List<ClassInformation>> getInformation(final String userName, final String classifierName) {
+		return execute(new Callable<List<ClassInformation>>() {
+            @Override
+            public List<ClassInformation> call() throws Exception {
+                return client.getInformation(userName, classifierName);
+            }
+        });
+	}
+	
+	@Override
 	public Future<?> removeClass(final String classifierName, final String className) {
 		return execute(new Runnable() {
             @Override

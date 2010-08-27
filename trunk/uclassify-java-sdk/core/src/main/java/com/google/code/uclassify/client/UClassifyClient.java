@@ -22,6 +22,7 @@ public interface UClassifyClient extends UClassifyAuthenticationClient {
 	public Map<String, Classification> classify(String userName, String classifierName, List<String> texts);
 	public Map<String, Classification> classify(String userName, String classifierName, InputStream texts);
 	public List<ClassInformation> getInformation(String classifierName);
+	public List<ClassInformation> getInformation(String userName, String classifierName);
 	public void createClassifier(String classifierName);
 	public void removeClassifier(String classifierName);
 	public void addClass(String classifierName, String className);
@@ -30,4 +31,5 @@ public interface UClassifyClient extends UClassifyAuthenticationClient {
 	public void train(String classifierName, InputStream trainingTexts);
 	public void untrain(String classifierName, Map<String, String> trainingTexts);
 	public void untrain(String classifierName, InputStream trainingTexts);
+	
 }
