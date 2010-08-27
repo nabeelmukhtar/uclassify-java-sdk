@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,9 +23,11 @@ import com.google.code.uclassify.client.SchemaElementFactory;
 import com.google.code.uclassify.client.UClassifyClient;
 import com.google.code.uclassify.client.UClassifyClientException;
 import com.google.code.uclassify.client.UClassifyConsumer;
-import com.google.code.uclassify.client.constant.ApplicationConstants;
-import com.google.code.uclassify.client.constant.UClassifyUrls.UClassifyUrlBuilder;
 import com.google.code.uclassify.client.enumeration.HttpMethod;
+import com.google.code.uclassify.client.util.ApplicationConstants;
+import com.google.code.uclassify.client.util.UClassifyUrls.UClassifyUrlBuilder;
+import com.uclassify.api._1.responseschema.ClassInformation;
+import com.uclassify.api._1.responseschema.Classification;
 
 /**
  * @author Nabeel Mukhtar
@@ -103,7 +106,89 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
     public UClassifyConsumer getApiConsumer() {
         return apiConsumer;
     }
+    
+	@Override
+	public void addClass(String classifierName, String className) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public Map<String, Classification> classify(String classifierName,
+			List<String> texts) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Classification> classify(String classifierName,
+			InputStream texts) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Classification> classify(String userName,
+			String classifierName, List<String> texts) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Classification> classify(String userName,
+			String classifierName, InputStream texts) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void createClassifier(String classifierName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<ClassInformation> getInformation(String classifierName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeClass(String classifierName, String className) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeClassifier(String classifierName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void train(String classifierName, Map<String, String> trainingTexts) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void train(String classifierName, InputStream trainingTexts) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void untrain(String classifierName, Map<String, String> trainingTexts) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void untrain(String classifierName, InputStream trainingTexts) {
+		// TODO Auto-generated method stub
+		
+	}
+    
     /**
      * Method description
      *

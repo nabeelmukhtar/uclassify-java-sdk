@@ -9,8 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.google.code.uclassify.client.constant.ApplicationConstants;
 import com.google.code.uclassify.client.impl.AsyncUClassifyClientAdapter;
+import com.google.code.uclassify.client.util.ApplicationConstants;
 
 /**
  * A factory for creating LinkedInApiClient objects.
