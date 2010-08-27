@@ -47,11 +47,11 @@ public class UClassifyJaxbClient extends BaseUClassifyClient {
     /**
      * Constructs ...
      * 
-     * @param consumerKey the consumer key
-     * @param consumerSecret the consumer secret
+     * @param readApiKey the read api key
+     * @param writeApiKey the write api key
      */
-    public UClassifyJaxbClient(String consumerKey, String consumerSecret) {
-        super(consumerKey, consumerSecret);
+    public UClassifyJaxbClient(String readApiKey, String writeApiKey) {
+        super(readApiKey, writeApiKey);
     }
 
     /**
