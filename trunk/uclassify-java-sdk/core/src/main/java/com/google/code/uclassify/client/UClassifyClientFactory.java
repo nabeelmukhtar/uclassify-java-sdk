@@ -102,7 +102,7 @@ public class UClassifyClientFactory {
 
 	        return client;
 		} catch (Exception e) {
-			throw new UClassifyClientException(e);
+			throw new UClassifyException(e);
 		}
     }
 
@@ -119,7 +119,7 @@ public class UClassifyClientFactory {
 
 	        return client;
 		} catch (Exception e) {
-			throw new UClassifyClientException(e);
+			throw new UClassifyException(e);
 		}
     }
     

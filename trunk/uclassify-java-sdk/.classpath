@@ -12,5 +12,7 @@
 	<classpathentry kind="lib" path="dev-lib/jaxb-xjc.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.2.jar"/>
 	<classpathentry kind="lib" path="dev-lib/kxml2-2.3.0.jar"/>
+	<classpathentry kind="lib" path="jaxb-lib/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="jaxb-lib/jaxb-impl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

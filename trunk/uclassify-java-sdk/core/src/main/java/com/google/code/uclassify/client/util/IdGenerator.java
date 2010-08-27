@@ -10,13 +10,13 @@ package com.google.code.uclassify.client.util;
 public class IdGenerator {
 	private IdGenerator() {}
 	
-	public IdGenerator newInstance() {
+	public static IdGenerator newInstance() {
 		return new IdGenerator();
 	}
 	public String generateId() {
-		return null;
+		return "";
 	}
 	public String generateId(String prefix) {
-		return null;
+		return prefix + generateId();
 	}
 }
