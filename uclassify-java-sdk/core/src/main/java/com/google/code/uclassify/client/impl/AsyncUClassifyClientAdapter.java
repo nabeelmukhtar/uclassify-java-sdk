@@ -30,18 +30,24 @@ import com.uclassify.api._1.responseschema.ClassInformation;
 import com.uclassify.api._1.responseschema.Classification;
 
 /**
+ * The Class AsyncUClassifyClientAdapter.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
 
-    /** Field description */
+    /** Field description. */
     private UClassifyClient client;
     
-    /** Field description */
+    /** Field description. */
     private ExecutorService taskExecutor;
     
-    /** Field description */
+    /**
+     * Field description.
+     * 
+     * @param client the client
+     * @param taskExecutor the task executor
+     */
 
     /**
      * Constructs ...
@@ -71,12 +77,11 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
     }
     
     /**
-     * Method description
-     *
-     *
-     * @param task
-     *
-     * @return
+     * Method description.
+     * 
+     * @param task the task
+     * 
+     * @return the future
      */
     @SuppressWarnings("unchecked")
 	protected Future execute(Runnable task) {
@@ -84,13 +89,11 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param task
-     * @param <T>
-     *
-     * @return
+     * Method description.
+     * 
+     * @param task the task
+     * 
+     * @return the future< t>
      */
     protected <T> Future<T> execute(Callable<T> task) {
         return taskExecutor.submit(task);
@@ -98,7 +101,7 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
 
     /**
      * Sets the request headers.
-     *
+     * 
      * @param requestHeaders the request headers
      */
     public void setRequestHeaders(Map<String, String> requestHeaders) {
@@ -107,7 +110,7 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
 
     /**
      * Gets the request headers.
-     *
+     * 
      * @return the request headers
      */
     public Map<String, String> getRequestHeaders() {
@@ -116,7 +119,7 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
 
     /**
      * Adds the request header.
-     *
+     * 
      * @param headerName the header name
      * @param headerValue the header value
      */
@@ -126,13 +129,16 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
 
     /**
      * Removes the request header.
-     *
+     * 
      * @param headerName the header name
      */
     public void removeRequestHeader(String headerName) {
         client.removeRequestHeader(headerName);
     }
     
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#addClass(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public Future<?> addClass(final String classifierName, final String className) {
 		return execute(new Runnable() {
@@ -143,6 +149,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#classify(java.lang.String, java.util.List)
+	 */
 	@Override
 	public Future<Map<String, Classification>> classify(final String classifierName,
 			final List<String> texts) {
@@ -154,6 +163,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#classify(java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public Future<Map<String, Classification>> classify(final String classifierName,
 			final InputStream texts) {
@@ -165,6 +177,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#classify(java.lang.String, java.lang.String, java.util.List)
+	 */
 	@Override
 	public Future<Map<String, Classification>> classify(final String userName,
 			final String classifierName, final List<String> texts) {
@@ -176,6 +191,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#classify(java.lang.String, java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public Future<Map<String, Classification>> classify(final String userName,
 			final String classifierName, final InputStream texts) {
@@ -187,6 +205,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#createClassifier(java.lang.String)
+	 */
 	@Override
 	public Future<?> createClassifier(final String classifierName) {
 		return execute(new Runnable() {
@@ -197,6 +218,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#getInformation(java.lang.String)
+	 */
 	@Override
 	public Future<List<ClassInformation>> getInformation(final String classifierName) {
 		return execute(new Callable<List<ClassInformation>>() {
@@ -207,6 +231,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#getInformation(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public Future<List<ClassInformation>> getInformation(final String userName, final String classifierName) {
 		return execute(new Callable<List<ClassInformation>>() {
@@ -217,6 +244,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#removeClass(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public Future<?> removeClass(final String classifierName, final String className) {
 		return execute(new Runnable() {
@@ -227,6 +257,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#removeClassifier(java.lang.String)
+	 */
 	@Override
 	public Future<?> removeClassifier(final String classifierName) {
 		return execute(new Runnable() {
@@ -237,6 +270,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#train(java.lang.String, java.util.Map)
+	 */
 	@Override
 	public Future<?> train(final String classifierName,
 			final Map<String, String> trainingTexts) {
@@ -248,6 +284,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#train(java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public Future<?> train(final String classifierName, final InputStream trainingTexts) {
 		return execute(new Runnable() {
@@ -258,6 +297,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#untrain(java.lang.String, java.util.Map)
+	 */
 	@Override
 	public Future<?> untrain(final String classifierName,
 			final Map<String, String> trainingTexts) {
@@ -269,6 +311,9 @@ public class AsyncUClassifyClientAdapter implements AsyncUClassifyClient {
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.uclassify.client.AsyncUClassifyClient#untrain(java.lang.String, java.io.InputStream)
+	 */
 	@Override
 	public Future<?> untrain(final String classifierName, final InputStream trainingTexts) {
 		return execute(new Runnable() {

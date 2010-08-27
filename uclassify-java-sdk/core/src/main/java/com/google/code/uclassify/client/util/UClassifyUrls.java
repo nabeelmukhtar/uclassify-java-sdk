@@ -174,6 +174,7 @@ public final class UClassifyUrls {
 	     * 
 	     * @param name the name
 	     * @param value the value
+	     * @param escape the escape
 	     * 
 	     * @return the linked in api url builder
 	     */
@@ -249,7 +250,6 @@ public final class UClassifyUrls {
          * Encode url.
          * 
          * @param original the original
-         * @param encoding the encoding
          * 
          * @return the string
          */

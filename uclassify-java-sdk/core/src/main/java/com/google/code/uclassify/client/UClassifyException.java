@@ -19,32 +19,30 @@ package com.google.code.uclassify.client;
 import java.util.Date;
 
 /**
- * Class description
- *
- *
+ * Class description.
  */
 public class UClassifyException extends RuntimeException {
+	
+	/** The status code. */
 	private int statusCode;
+	
+	/** The timestamp. */
 	private Date timestamp;
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -4345556572105572685L;
 
 	/**
-     * Constructs ...
-     *
-     */
+	 * Constructs ...
+	 */
     public UClassifyException() {
         super();
     }
 
     /**
      * Constructs ...
-     *
-     *
-     * @param message
+     * 
+     * @param message the message
      */
     public UClassifyException(String message) {
         super(message);
@@ -52,9 +50,8 @@ public class UClassifyException extends RuntimeException {
 
     /**
      * Constructs ...
-     *
-     *
-     * @param cause
+     * 
+     * @param cause the cause
      */
     public UClassifyException(Throwable cause) {
         super(cause);
@@ -62,10 +59,9 @@ public class UClassifyException extends RuntimeException {
 
     /**
      * Constructs ...
-     *
-     *
-     * @param message
-     * @param cause
+     * 
+     * @param message the message
+     * @param cause the cause
      */
     public UClassifyException(String message, Throwable cause) {
         super(message, cause);
@@ -73,10 +69,10 @@ public class UClassifyException extends RuntimeException {
 
     /**
      * Constructs ...
-     *
-     *
-     * @param message
-     * @param cause
+     * 
+     * @param message the message
+     * @param statusCode the status code
+     * @param timestamp the timestamp
      */
     public UClassifyException(String message, int statusCode, Date timestamp) {
         super(message);
@@ -85,6 +81,8 @@ public class UClassifyException extends RuntimeException {
     }
     
 	/**
+	 * Gets the status code.
+	 * 
 	 * @return the statusCode
 	 */
 	public int getStatusCode() {
@@ -92,6 +90,8 @@ public class UClassifyException extends RuntimeException {
 	}
 
 	/**
+	 * Sets the status code.
+	 * 
 	 * @param statusCode the statusCode to set
 	 */
 	public void setStatusCode(int statusCode) {
@@ -99,6 +99,8 @@ public class UClassifyException extends RuntimeException {
 	}
 
 	/**
+	 * Gets the timestamp.
+	 * 
 	 * @return the timestamp
 	 */
 	public Date getTimestamp() {
@@ -106,6 +108,8 @@ public class UClassifyException extends RuntimeException {
 	}
 
 	/**
+	 * Sets the timestamp.
+	 * 
 	 * @param timestamp the timestamp to set
 	 */
 	public void setTimestamp(Date timestamp) {

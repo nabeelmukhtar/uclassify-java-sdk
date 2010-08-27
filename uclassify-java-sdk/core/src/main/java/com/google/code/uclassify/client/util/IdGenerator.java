@@ -17,20 +17,45 @@
 package com.google.code.uclassify.client.util;
 
 /**
+ * The Class IdGenerator.
+ * 
  * @author nmukhtar
- *
  */
 public class IdGenerator {
+	
+	/** The counter. */
 	int counter;
 	
+	/**
+	 * Instantiates a new id generator.
+	 */
 	private IdGenerator() {}
 	
+	/**
+	 * New instance.
+	 * 
+	 * @return the id generator
+	 */
 	public static IdGenerator newInstance() {
 		return new IdGenerator();
 	}
+	
+	/**
+	 * Generate id.
+	 * 
+	 * @return the string
+	 */
 	public String generateId() {
 		return String.valueOf(counter++);
 	}
+	
+	/**
+	 * Generate id.
+	 * 
+	 * @param prefix the prefix
+	 * 
+	 * @return the string
+	 */
 	public String generateId(String prefix) {
 		return prefix + generateId();
 	}

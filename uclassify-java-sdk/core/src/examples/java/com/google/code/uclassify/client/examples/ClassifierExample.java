@@ -31,29 +31,26 @@ import com.google.code.uclassify.client.UClassifyClient;
 import com.google.code.uclassify.client.UClassifyClientFactory;
 
 /**
+ * The Class ClassifierExample.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public class ClassifierExample {
 
-    /**
-     * Consumer Key
-     */
+    /** Consumer Key. */
     private static final String WRITE_KEY = "writeKey";
 	
-    /**
-     * ID
-     */
+    /** ID. */
     private static final String CLASSIFIER = "classifier";
     
-    /**
-     * Name of the help command line option.
-     */
+    /** Name of the help command line option. */
     private static final String HELP_OPTION = "help";
     
     /**
-	 * @param args
-	 */
+     * The main method.
+     * 
+     * @param args the args
+     */
 	public static void main(String[] args) {
 		Options options = buildOptions();
         try {
@@ -66,7 +63,10 @@ public class ClassifierExample {
 	}
 	
     /**
-     * Process command line options and call the service. 
+     * Process command line options and call the service.
+     * 
+     * @param line the line
+     * @param options the options
      */
     private static void processCommandLine(CommandLine line, Options options) {
         if(line.hasOption(HELP_OPTION)) {
@@ -103,8 +103,10 @@ public class ClassifierExample {
     }
 	
 	/**
-     * Build command line options object.
-     */
+	 * Build command line options object.
+	 * 
+	 * @return the options
+	 */
     private static Options buildOptions() {
        
         Options opts = new Options();
@@ -132,6 +134,8 @@ public class ClassifierExample {
     
     /**
      * Print help and usage.
+     * 
+     * @param options the options
      */
     private static void printHelp(Options options) {
         int width = 80;
