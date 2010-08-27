@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -134,6 +135,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
@@ -155,6 +157,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Map<String, String> textIds = new HashMap<String, String>();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         TextList textList = OBJECT_FACTORY.createTextList();
         for (String text : texts) {
         	String id = idgenerator.generateId("Text");
@@ -204,6 +207,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Map<String, String> textIds = new HashMap<String, String>();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         TextList textList = OBJECT_FACTORY.createTextList();
         for (String text : texts) {
         	String id = idgenerator.generateId("Text");
@@ -251,6 +255,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
@@ -269,6 +274,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         
         WebReadCallList webReadCallList = OBJECT_FACTORY.createWebReadCallList();
         webReadCallList.setReadApiKey(getApiConsumer().getReadApiKey());
@@ -296,6 +302,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
@@ -315,6 +322,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         IdGenerator idgenerator = IdGenerator.newInstance();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         WebWriteCallList webWriteCallList = OBJECT_FACTORY.createWebWriteCallList();
         webWriteCallList.setClassifierName(classifierName);
         webWriteCallList.setWriteApiKey(getApiConsumer().getWriteApiKey());
@@ -334,6 +342,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Map<String, String> textIds = new HashMap<String, String>();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         TextList textList = OBJECT_FACTORY.createTextList();
         for (String text : trainingTexts.values()) {
         	String id = idgenerator.generateId("Text");
@@ -373,6 +382,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
         Map<String, String> textIds = new HashMap<String, String>();
         String                apiUrl  = builder.buildUrl();
         Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
         TextList textList = OBJECT_FACTORY.createTextList();
         for (String text : trainingTexts.values()) {
         	String id = idgenerator.generateId("Text");
