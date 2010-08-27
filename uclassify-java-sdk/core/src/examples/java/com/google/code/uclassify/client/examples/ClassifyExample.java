@@ -18,6 +18,7 @@ package com.google.code.uclassify.client.examples;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.cli.BasicParser;
@@ -31,6 +32,7 @@ import org.apache.commons.cli.ParseException;
 import com.google.code.uclassify.client.UClassifyClient;
 import com.google.code.uclassify.client.UClassifyClientFactory;
 import com.uclassify.api._1.responseschema.Class;
+import com.uclassify.api._1.responseschema.ClassInformation;
 import com.uclassify.api._1.responseschema.Classification;
 
 /**
@@ -96,9 +98,13 @@ public class ClassifyExample {
     			System.out.println("Fetching classification for classifier:" + classifier);
     			if (line.hasOption(USER)) {
     				String user = line.getOptionValue(USER);
+        			List<ClassInformation> informations = client.getInformation(user, classifier);
+        			printResult(informations);
         			Map<String, Classification> classifications = client.classify(user, classifier, Arrays.asList(text));
         			printResult(classifications);
     			} else {
+        			List<ClassInformation> informations = client.getInformation(classifier);
+        			printResult(informations);
         			Map<String, Classification> classifications = client.classify(classifier, Arrays.asList(text));
         			printResult(classifications);
     			}
@@ -108,10 +114,20 @@ public class ClassifyExample {
         }
     }
 	
+	private static void printResult(List<ClassInformation> informations) {
+		System.out.println("===================== Classifier Info ========================");
+		System.out.println("Class Name:Total Count:Unique Features");
+		for (ClassInformation classInformation : informations) {
+			System.out.println(classInformation.getClassName() + ":" + classInformation.getTotalCount() + ":" + classInformation.getUniqueFeatures());
+		}
+	}
+
 	private static void printResult(Map<String, Classification> classifications) {
-		for(String category : classifications.keySet()) {
-			Classification classification = classifications.get(category);
-			System.out.println(category);
+		System.out.println("================ Classifications ==================");
+		for(String text : classifications.keySet()) {
+			Classification classification = classifications.get(text);
+			System.out.println(text);
+			System.out.println("====================");
 			for (Class clazz : classification.getClazz()) {
 				System.out.println(clazz.getClassName() + ":" + clazz.getP());
 			}

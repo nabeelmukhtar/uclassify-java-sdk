@@ -316,6 +316,37 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
 	}
 
 	@Override
+	public List<ClassInformation> getInformation(String userName, String classifierName) {
+		assertNotNullOrEmpty("API Read Key", getApiConsumer().getReadApiKey());
+		assertNotNullOrEmpty("classifierName", classifierName);
+		
+        UClassifyUrlBuilder builder = createUClassifyUrlBuilder(UClassifyUrls.API_URL);
+        IdGenerator idgenerator = IdGenerator.newInstance();
+        String                apiUrl  = builder.buildUrl();
+        Uclassify uclassify = OBJECT_FACTORY.createUclassify();
+        uclassify.setVersion(BigDecimal.valueOf(ApplicationConstants.REQUEST_VERSION));
+        
+        WebReadCallList webReadCallList = OBJECT_FACTORY.createWebReadCallList();
+        webReadCallList.setReadApiKey(getApiConsumer().getReadApiKey());
+		uclassify.setReadCalls(webReadCallList);
+        GetInformation getInformation = OBJECT_FACTORY.createGetInformation();
+        getInformation.setId(idgenerator.generateId("GetInformation"));
+        getInformation.setClassifierName(classifierName);
+        getInformation.setUsername(userName);
+        webReadCallList.getClassifyAndGetInformation().add(getInformation);
+        
+		List<ResponseEntity> response = readResponse(callApiMethod(apiUrl, marshallObject(uclassify), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_OK));
+		
+		for (ResponseEntity entity : response) {
+			com.uclassify.api._1.responseschema.GetInformation getInformationResponse = (com.uclassify.api._1.responseschema.GetInformation) entity;
+			if (getInformationResponse.getClasses() != null) {
+				return getInformationResponse.getClasses().getClassInformation();
+			}
+		}
+		return Collections.emptyList();
+	}
+	@Override
 	public void removeClass(String classifierName, String className) {
 		assertNotNullOrEmpty("API Write Key", getApiConsumer().getWriteApiKey());
 		assertNotNullOrEmpty("classifierName", classifierName);
