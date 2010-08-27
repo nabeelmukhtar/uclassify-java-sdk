@@ -1,0 +1,10 @@
+com.google.code.uclassify.client
+com.google.code.uclassify.client.constant
+com.google.code.uclassify.client.examples
+com.google.code.uclassify.client.impl
+com.google.code.uclassify.client.util
+com.uclassify.api._1.requestschema
+com.uclassify.api._1.requestschema.impl
+com.uclassify.api._1.responseschema
+com.uclassify.api._1.responseschema.impl
+org.w3._2001.xmlschema
