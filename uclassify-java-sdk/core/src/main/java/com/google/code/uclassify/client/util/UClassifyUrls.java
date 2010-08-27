@@ -10,16 +10,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.google.code.uclassify.client.enumeration.FieldEnum;
 
 /**
  * The Class UClassifyUrls.
@@ -134,55 +130,6 @@ public final class UClassifyUrls {
     	}
     	
     	/**
-	     * With parameter enum set.
-	     * 
-	     * @param name the name
-	     * @param enumSet the enum set
-	     * 
-	     * @return the linked in api url builder
-	     */
-	    public UClassifyUrlBuilder withParameterEnumSet(String name, Set<? extends FieldEnum> enumSet) {
-	    	Set<String> values = new HashSet<String>(enumSet.size());
-	    	
-	    	for (FieldEnum fieldEnum : enumSet) {
-	    		values.add(encodeUrl(fieldEnum.fieldName()));
-	    	}
-	    	
-    		parametersMap.put(name, values);
-    		
-    		return this;
-    	}
-	    
-    	/**
-	     * With parameter enum.
-	     * 
-	     * @param name the name
-	     * @param value the value
-	     * 
-	     * @return the linked in api url builder
-	     */
-	    public UClassifyUrlBuilder withParameterEnum(String name, FieldEnum value) {
-	    	withParameter(name, value.fieldName());
-    		
-    		return this;
-    	}
-    	
-    	/**
-	     * With parameter enum map.
-	     * 
-	     * @param enumMap the enum map
-	     * 
-	     * @return the linked in api url builder
-	     */
-	    public UClassifyUrlBuilder withParameterEnumMap(Map<? extends FieldEnum, String> enumMap) {
-	    	for (FieldEnum parameter : enumMap.keySet()) {
-	    		withParameter(parameter.fieldName(), enumMap.get(parameter));
-	    	}
-    		
-    		return this;
-    	}
-	    
-    	/**
 	     * With empty field.
 	     * 
 	     * @param name the name
@@ -227,53 +174,6 @@ public final class UClassifyUrls {
     		return this;
     	}
 	    
-    	/**
-	     * With field enum.
-	     * 
-	     * @param name the name
-	     * @param value the value
-	     * 
-	     * @return the linked in api url builder
-	     */
-	    public UClassifyUrlBuilder withFieldEnum(String name, FieldEnum value) {
-	    	if (value.fieldName() == null || value.fieldName().length() == 0) {
-	    		fieldsMap.put(name, "");
-	    	} else {
-	    		fieldsMap.put(name, ":" + value.fieldName());
-	    	}
-    		
-    		return this;
-    	}
-    	
-    	/**
-	     * With field enum set.
-	     * 
-	     * @param name the name
-	     * @param enumSet the enum set
-	     * 
-	     * @return the linked in api url builder
-	     */
-	    public UClassifyUrlBuilder withFieldEnumSet(String name, Set<? extends FieldEnum> enumSet) {
-	    	StringBuilder builder = new StringBuilder();
-	    	if (!enumSet.isEmpty()) {
-	        	builder.append(":");
-	    		Iterator<? extends FieldEnum> iter = enumSet.iterator();
-	        	builder.append("(");
-	    		while (iter.hasNext()) {
-	    			FieldEnum fieldEnum = iter.next();
-	    			builder.append(fieldEnum.fieldName());
-	    			if (iter.hasNext()) {
-	    				builder.append(",");
-	    			}
-	    		}
-	        	builder.append(")");
-	    	}
-    		
-    		fieldsMap.put(name, builder.toString());
-    		
-    		return this;
-    	}
-    	
     	/**
 	     * Builds the url.
 	     * 

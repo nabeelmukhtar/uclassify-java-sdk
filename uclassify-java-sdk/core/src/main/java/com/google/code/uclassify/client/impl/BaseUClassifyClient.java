@@ -28,7 +28,6 @@ import com.google.code.uclassify.client.SchemaElementFactory;
 import com.google.code.uclassify.client.UClassifyClient;
 import com.google.code.uclassify.client.UClassifyConsumer;
 import com.google.code.uclassify.client.UClassifyException;
-import com.google.code.uclassify.client.enumeration.HttpMethod;
 import com.google.code.uclassify.client.util.ApplicationConstants;
 import com.google.code.uclassify.client.util.Base64;
 import com.google.code.uclassify.client.util.IdGenerator;
@@ -555,7 +554,7 @@ public abstract class BaseUClassifyClient implements UClassifyClient {
                 request.setRequestProperty(headerName, requestHeaders.get(headerName));
             }
 
-            request.setRequestMethod(method.fieldName());
+            request.setRequestMethod(method.name());
             request.setDoOutput(true);
 
             if (contentType != null) {
