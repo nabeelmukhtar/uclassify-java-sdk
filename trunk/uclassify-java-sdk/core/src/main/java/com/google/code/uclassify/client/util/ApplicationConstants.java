@@ -36,6 +36,9 @@ public final class ApplicationConstants {
     /** The Constant VALIDATE_XML. */
     public static final boolean VALIDATE_XML = getBooleanProperty("com.google.code.uclassify.client.validateXml");
 
+    /** The Constant REQUEST_VERSION. */
+    public static final double REQUEST_VERSION = getDoubleProperty("com.google.code.uclassify.client.requestVersion");
+    
     /** The Constant CONTENT_TYPE_XML. */
     public static final String CONTENT_TYPE_XML = getProperty("com.google.code.uclassify.client.contentTypeXml");
 
