@@ -6,7 +6,6 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="uclassify-java-sdk">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
@@ -14,7 +13,6 @@
         <pathelement location="bin"/>
         <pathelement location="dev-lib/junit-4.5.jar"/>
         <pathelement location="lib/commons-cli-1.2.jar"/>
-        <pathelement location="dev-lib/kxml2-2.3.0.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -58,7 +56,6 @@
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="core/src/main/java"/>
-            <exclude name="com/google/code/uclassify/client/impl/UClassifyXppClient.java"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
@@ -67,7 +64,6 @@
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="core/src/test/java"/>
-            <exclude name="com/google/code/uclassify/client/UClassifyXppClientTest.java"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
@@ -82,19 +78,19 @@
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target name="ClassifyExample">
         <java classname="com.google.code.uclassify.client.examples.ClassifyExample" failonerror="true" fork="yes">
-            <arg line="-readKey xxx -classifier Topics -user uClassify -text &quot;I am working on hadoop.&quot;"/>
+            <arg line="-readKey HSPjrhBwu6pTssGKOLzCUqI -classifier Topics -user uClassify -text &quot;I am working on hadoop.&quot;"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </java>
     </target>
     <target name="TrainExample">
         <java classname="com.google.code.uclassify.client.examples.TrainExample" failonerror="true" fork="yes">
-            <arg line="-writeKey xxx -classifier testclassifier -text C:\\train.csv"/>
+            <arg line="-writeKey 8f5MSmbrmcyaaGhyUFU6MiPOrw -classifier testclassifier -text C:\\train.csv"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </java>
     </target>
     <target name="ClassifierExample">
         <java classname="com.google.code.uclassify.client.examples.ClassifierExample" failonerror="true" fork="yes">
-            <arg line="-writeKey xxx -classifier nabeelclassifier"/>
+            <arg line="-writeKey 8f5MSmbrmcyaaGhyUFU6MiPOrw -classifier nabeelclassifier"/>
             <classpath refid="uclassify-java-sdk.classpath"/>
         </java>
     </target>
