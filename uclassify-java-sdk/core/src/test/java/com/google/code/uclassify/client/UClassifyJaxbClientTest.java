@@ -16,9 +16,13 @@
  */
 package com.google.code.uclassify.client;
 
+import java.util.List;
+
 import org.junit.Test;
 
+import com.google.code.uclassify.client.constant.TestConstants;
 import com.google.code.uclassify.client.impl.UClassifyJaxbClient;
+import com.uclassify.api._1.responseschema.ClassInformation;
 
 /**
  * The Class UClassifyJaxbClientTest.
@@ -40,6 +44,8 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	public void setUp() throws Exception {
 		super.setUp();
 		client = factory.createUClassifyClient(UClassifyJaxbClient.class);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		client.createClassifier(TestConstants.TEST_CLASSIFIER_NAME);
 	}
 
 	/**
@@ -51,6 +57,8 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	public void tearDown() throws Exception {
 		super.tearDown();
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		client.removeClassifier(TestConstants.TEST_CLASSIFIER_NAME);
 		client = null;
 	}
 	
@@ -59,7 +67,9 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testAddClass() {
-		fail("Not yet implemented");
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Class Name"), TestConstants.TEST_CLASS_NAME);
+		client.addClass(TestConstants.TEST_CLASSIFIER_NAME, TestConstants.TEST_CLASS_NAME);
 	}
 
 	/**
@@ -99,7 +109,7 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testCreateClassifier() {
-		fail("Not yet implemented");
+		// No op
 	}
 
 	/**
@@ -107,7 +117,9 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testGetInformation() {
-		fail("Not yet implemented");
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		List<ClassInformation> information = client.getInformation(TestConstants.TEST_CLASSIFIER_NAME);
+		assertNotNullOrEmpty("Information should not be null or empty.", information);
 	}
 
 	/**
@@ -115,7 +127,9 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testRemoveClass() {
-		fail("Not yet implemented");
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Class Name"), TestConstants.TEST_CLASS_NAME);
+		client.removeClass(TestConstants.TEST_CLASSIFIER_NAME, TestConstants.TEST_CLASS_NAME);
 	}
 
 	/**
@@ -123,7 +137,7 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testRemoveClassifier() {
-		fail("Not yet implemented");
+		// No op
 	}
 
 	/**

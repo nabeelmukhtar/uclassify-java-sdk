@@ -46,7 +46,19 @@ public final class TestConstants {
     /** Field description. */
     public static final String UCLASSIFY_TEST_WRITE_KEY =
         testConstants.getProperty("com.google.code.uclassify.client.writeApiKey");
+
+	public static final String TEST_CLASSIFIER_NAME = 
+		testConstants.getProperty("com.google.code.uclassify.client.classifierName");
+
+	public static final String TEST_CLASS_NAME = 
+		testConstants.getProperty("com.google.code.uclassify.client.className");
     
+	public static final String CLASSIFICATION_TEXTS_FILE = 
+		testConstants.getProperty("com.google.code.uclassify.client.classificationTexts");
+	
+	public static final String TRAINING_TEXTS_FILE = 
+		testConstants.getProperty("com.google.code.uclassify.client.trainingTexts");
+	
     /**
      * Constructs ...
      */
