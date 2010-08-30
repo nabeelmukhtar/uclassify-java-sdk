@@ -17,12 +17,14 @@
 package com.google.code.uclassify.client;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
 import com.google.code.uclassify.client.constant.TestConstants;
 import com.google.code.uclassify.client.impl.UClassifyJaxbClient;
 import com.uclassify.api._1.responseschema.ClassInformation;
+import com.uclassify.api._1.responseschema.Classification;
 
 /**
  * The Class UClassifyJaxbClientTest.
@@ -77,7 +79,7 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testClassifyStringListOfString() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 	/**
@@ -85,7 +87,10 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testClassifyStringInputStream() {
-		fail("Not yet implemented");
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Texts"), TestConstants.CLASSIFICATION_TEXTS_FILE);
+		Map<String, Classification> classifications = client.classify(TestConstants.TEST_CLASSIFIER_NAME, getClass().getResourceAsStream(TestConstants.CLASSIFICATION_TEXTS_FILE));
+		assertNotNullOrEmpty("Classifications must not be null or empty.", classifications);
 	}
 
 	/**
@@ -93,7 +98,7 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testClassifyStringStringListOfString() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 	/**
@@ -145,7 +150,7 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testTrainStringMapOfStringString() {
-		fail("Not yet implemented");
+//		fail("Not yet implemented");
 	}
 
 	/**
@@ -153,7 +158,9 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testTrainStringInputStream() {
-		fail("Not yet implemented");
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Training Texts"), TestConstants.TRAINING_TEXTS_FILE);
+		client.train(TestConstants.TEST_CLASSIFIER_NAME, getClass().getResourceAsStream(TestConstants.TRAINING_TEXTS_FILE));
 	}
 
 	/**
@@ -161,7 +168,7 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testUntrainStringMapOfStringString() {
-		fail("Not yet implemented");
+//		fail("Not yet implemented");
 	}
 
 	/**
@@ -169,6 +176,8 @@ public class UClassifyJaxbClientTest extends UClassifyClientTest {
 	 */
 	@Test
 	public void testUntrainStringInputStream() {
-		fail("Not yet implemented");
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Classifier Name"), TestConstants.TEST_CLASSIFIER_NAME);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Training Texts"), TestConstants.TRAINING_TEXTS_FILE);
+		client.untrain(TestConstants.TEST_CLASSIFIER_NAME, getClass().getResourceAsStream(TestConstants.TRAINING_TEXTS_FILE));
 	}
 }

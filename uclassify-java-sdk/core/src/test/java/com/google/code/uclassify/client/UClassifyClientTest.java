@@ -17,6 +17,7 @@
 package com.google.code.uclassify.client;
 
 import java.util.Collection;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
@@ -99,6 +100,17 @@ public abstract class UClassifyClientTest extends TestCase {
 	 * @param value the value
 	 */
 	protected static void assertNotNullOrEmpty(String message, Collection<?> value) {
+		assertNotNull(message, value);
+		assertFalse(message, value.isEmpty());
+	}
+
+	/**
+	 * Assert not null or empty.
+	 * 
+	 * @param message the message
+	 * @param value the value
+	 */
+	protected static void assertNotNullOrEmpty(String message, Map<?, ?> value) {
 		assertNotNull(message, value);
 		assertFalse(message, value.isEmpty());
 	}
